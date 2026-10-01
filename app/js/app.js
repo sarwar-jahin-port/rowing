@@ -129,9 +129,37 @@
   }
 
   /* -----------------------------------------------------------------------
+     Theme Toggle
+     ----------------------------------------------------------------------- */
+  function initTheme() {
+    const toggleBtn = document.getElementById('themeToggle');
+    if (!toggleBtn) return;
+
+    // Listen for manual toggle
+    toggleBtn.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      
+      document.documentElement.setAttribute('data-theme', newTheme);
+      
+      try {
+        localStorage.setItem('theme', newTheme);
+      } catch (e) {}
+    });
+
+    // Listen for system preference changes (if user hasn't forced a theme)
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+      if (!localStorage.getItem('theme')) {
+        document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+      }
+    });
+  }
+
+  /* -----------------------------------------------------------------------
      Bootstrap — Initialize All Modules
      ----------------------------------------------------------------------- */
   function init() {
+    initTheme();
     initNavScroll();
     initMobileMenu();
     initSmoothScroll();

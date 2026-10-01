@@ -3,32 +3,94 @@
    Single source of truth for the entire visual system.
    ========================================================================== */
 
+/* --------------------------------------------------------------------------
+   LIGHT THEME (Default)
+   -------------------------------------------------------------------------- */
 :root {
   /* -- Color: Backgrounds ------------------------------------------------ */
+  --c-bg:              #FFFFFF;
+  --c-bg-alt:          #F8F7F4;
+  --c-surface:         #FFFFFF;
+  --c-surface-raised:  #FFFFFF;
+  --c-surface-overlay: rgba(255, 255, 255, 0.95);
+  --c-nav-bg:          rgba(255, 255, 255, 0.92);
+
+  /* -- Color: Brand ------------------------------------------------------ */
+  --c-primary:         #C8102E;
+  --c-primary-hover:   #E01535;
+  --c-primary-muted:   rgba(200, 16, 46, 0.06);
+  --c-accent:          #2B2D33;
+  --c-accent-muted:    rgba(43, 45, 51, 0.10);
+
+  /* -- Color: Text ------------------------------------------------------- */
+  --c-text:            #111318;
+  --c-text-2:          #555B6E;
+  --c-text-3:          #8E92A0;
+  --c-text-inverse:    #FFFFFF;
+
+  /* -- Color: Borders & Dividers ----------------------------------------- */
+  --c-border:          rgba(0, 0, 0, 0.06);
+  --c-border-hover:    rgba(0, 0, 0, 0.10);
+  --c-divider:         rgba(0, 0, 0, 0.04);
+
+  /* -- Shadows (Light) --------------------------------------------------- */
+  --shadow-sm:         0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-md:         0 4px 12px rgba(0, 0, 0, 0.06), 0 2px 4px rgba(0, 0, 0, 0.04);
+  --shadow-lg:         0 12px 40px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.04);
+  --shadow-xl:         0 20px 60px rgba(0, 0, 0, 0.10);
+  --shadow-glow:       0 0 24px rgba(200, 16, 46, 0.08);
+  --shadow-glow-accent:0 0 24px rgba(43, 45, 51, 0.08);
+
+  /* -- Scrollbar --------------------------------------------------------- */
+  --scrollbar-track:   #F8F7F4;
+  --scrollbar-thumb:   #d4d4d8;
+  --scrollbar-thumb-h: #a1a1aa;
+
+  /* (Common Tokens below) */
+}
+
+/* --------------------------------------------------------------------------
+   DARK THEME (Override)
+   -------------------------------------------------------------------------- */
+:root[data-theme="dark"] {
   --c-bg:              #07080f;
   --c-bg-alt:          #0b0d15;
   --c-surface:         #0e1018;
   --c-surface-raised:  #161821;
-  --c-surface-overlay: rgba(7, 8, 15, 0.85);
+  --c-surface-overlay: rgba(7, 8, 15, 0.95);
+  --c-nav-bg:          rgba(7, 8, 15, 0.92);
 
-  /* -- Color: Brand ------------------------------------------------------ */
-  --c-primary:         #c8102e;
-  --c-primary-hover:   #e01535;
-  --c-primary-muted:   rgba(200, 16, 46, 0.12);
-  --c-accent:          #d4a853;
-  --c-accent-muted:    rgba(212, 168, 83, 0.10);
-
-  /* -- Color: Text ------------------------------------------------------- */
   --c-text:            #f0f0f2;
   --c-text-2:          #a0a3b1;
   --c-text-3:          #6b6e7b;
   --c-text-inverse:    #07080f;
 
-  /* -- Color: Borders & Dividers ----------------------------------------- */
   --c-border:          rgba(255, 255, 255, 0.06);
   --c-border-hover:    rgba(255, 255, 255, 0.12);
   --c-divider:         rgba(255, 255, 255, 0.04);
+  
+  --c-primary-muted:   rgba(200, 16, 46, 0.12);
+  --c-accent:          #f0f0f2; /* White/Silver accent in dark mode */
+  --c-accent-muted:    rgba(240, 240, 242, 0.10);
 
+  /* Shadows (Dark) */
+  --shadow-sm:         0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-md:         0 4px 12px rgba(0, 0, 0, 0.5);
+  --shadow-lg:         0 8px 30px rgba(0, 0, 0, 0.6);
+  --shadow-xl:         0 16px 48px rgba(0, 0, 0, 0.7);
+  --shadow-glow:       0 0 24px rgba(200, 16, 46, 0.15);
+  --shadow-glow-accent:0 0 24px rgba(255, 255, 255, 0.10);
+
+  /* Scrollbar */
+  --scrollbar-track:   #07080f;
+  --scrollbar-thumb:   #161821;
+  --scrollbar-thumb-h: #6b6e7b;
+}
+
+/* --------------------------------------------------------------------------
+   COMMON TOKENS (Apply to both themes)
+   -------------------------------------------------------------------------- */
+:root {
   /* -- Color: State ------------------------------------------------------ */
   --c-success:         #22c55e;
   --c-error:           #ef4444;
@@ -97,14 +159,6 @@
   --radius-xl:         16px;
   --radius-2xl:        24px;
   --radius-pill:       9999px;
-
-  /* -- Shadows ----------------------------------------------------------- */
-  --shadow-sm:         0 1px 3px rgba(0, 0, 0, 0.4);
-  --shadow-md:         0 4px 12px rgba(0, 0, 0, 0.5);
-  --shadow-lg:         0 8px 30px rgba(0, 0, 0, 0.6);
-  --shadow-xl:         0 16px 48px rgba(0, 0, 0, 0.7);
-  --shadow-glow:       0 0 24px rgba(200, 16, 46, 0.15);
-  --shadow-glow-accent:0 0 24px rgba(212, 168, 83, 0.10);
 
   /* -- Motion ------------------------------------------------------------ */
   --ease-out:          cubic-bezier(0.16, 1, 0.3, 1);
