@@ -1,0 +1,132 @@
+/* ==========================================================================
+   TRUST STRIP
+   Logo marquee showing rowing clubs worked with.
+   ========================================================================== */
+
+.trust-strip {
+  background-color: var(--c-bg-alt);
+  padding-block: var(--sp-3xl) var(--sp-2xl); /* Extra top padding to space from hero */
+  overflow: hidden;
+  position: relative;
+}
+
+.trust-strip__label {
+  font-family: var(--ff-body);
+  font-size: var(--fs-small);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-widest);
+  text-transform: uppercase;
+  color: var(--c-text-2);
+  margin-bottom: var(--sp-xl);
+}
+
+/* -- Logo Marquee Container ---------------------------------------------- */
+.logo-marquee {
+  width: 100%;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  /* Hardware acceleration for smooth scrolling */
+  transform: translateZ(0);
+}
+
+/* Gradient masks for smooth fade in/out on edges */
+.logo-marquee::before,
+.logo-marquee::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 12vw; /* Responsive fade width */
+  max-width: 150px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.logo-marquee::before {
+  left: 0;
+  background: linear-gradient(to right, var(--c-bg-alt) 0%, transparent 100%);
+}
+
+.logo-marquee::after {
+  right: 0;
+  background: linear-gradient(to left, var(--c-bg-alt) 0%, transparent 100%);
+}
+
+/* -- Scrolling Track ----------------------------------------------------- */
+.logo-marquee__inner {
+  display: flex;
+  width: max-content;
+  animation: scroll-logos 45s linear infinite;
+  will-change: transform;
+}
+
+.logo-marquee:hover .logo-marquee__inner {
+  animation-play-state: paused;
+}
+
+.logo-marquee__group {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3xl);
+  padding-right: var(--sp-3xl);
+}
+
+/* -- Logo Images --------------------------------------------------------- */
+.logo-marquee__group img {
+  height: 64px;
+  width: auto;
+  max-width: 180px; /* Prevent overly wide logos */
+  object-fit: contain;
+  
+  /* Initial state: muted and grayscale */
+  filter: grayscale(100%) opacity(0.4);
+  transition: filter var(--duration-slow) var(--ease-out),
+              transform var(--duration-slow) var(--ease-out);
+  cursor: pointer;
+}
+
+.logo-marquee__group img:hover {
+  /* Hover state: full color */
+  filter: grayscale(0%) opacity(1);
+  transform: scale(1.05);
+}
+
+/* -- Dark Mode Logo Adjustments ------------------------------------------ */
+:root[data-theme="dark"] .logo-marquee__group img {
+  /* Brighten the logos in dark mode so they stand out against dark bg */
+  filter: grayscale(100%) opacity(0.5) contrast(0.3) brightness(1.8);
+}
+
+:root[data-theme="dark"] .logo-marquee__group img:hover {
+  /* Keep some brightness on hover for legibility */
+  filter: grayscale(0%) opacity(1) brightness(1.2);
+}
+
+/* -- Animation Keyframes ------------------------------------------------- */
+@keyframes scroll-logos {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* -- Responsive Overrides ------------------------------------------------ */
+@media (max-width: 768px) {
+  .logo-marquee__group {
+    gap: var(--sp-2xl);
+    padding-right: var(--sp-2xl);
+  }
+  
+  .logo-marquee__group img {
+    height: 48px;
+    max-width: 140px;
+  }
+  
+  .logo-marquee::before,
+  .logo-marquee::after {
+    width: 40px;
+  }
+  
+  .trust-strip {
+    padding-block: var(--sp-2xl) var(--sp-xl);
+  }
+}
