@@ -1,0 +1,139 @@
+/* ==========================================================================
+   DESIGN TOKENS — Oar & Blade
+   Single source of truth for the entire visual system.
+   ========================================================================== */
+
+:root {
+  /* -- Color: Backgrounds ------------------------------------------------ */
+  --c-bg:              #07080f;
+  --c-bg-alt:          #0b0d15;
+  --c-surface:         #0e1018;
+  --c-surface-raised:  #161821;
+  --c-surface-overlay: rgba(7, 8, 15, 0.85);
+
+  /* -- Color: Brand ------------------------------------------------------ */
+  --c-primary:         #c8102e;
+  --c-primary-hover:   #e01535;
+  --c-primary-muted:   rgba(200, 16, 46, 0.12);
+  --c-accent:          #d4a853;
+  --c-accent-muted:    rgba(212, 168, 83, 0.10);
+
+  /* -- Color: Text ------------------------------------------------------- */
+  --c-text:            #f0f0f2;
+  --c-text-2:          #a0a3b1;
+  --c-text-3:          #6b6e7b;
+  --c-text-inverse:    #07080f;
+
+  /* -- Color: Borders & Dividers ----------------------------------------- */
+  --c-border:          rgba(255, 255, 255, 0.06);
+  --c-border-hover:    rgba(255, 255, 255, 0.12);
+  --c-divider:         rgba(255, 255, 255, 0.04);
+
+  /* -- Color: State ------------------------------------------------------ */
+  --c-success:         #22c55e;
+  --c-error:           #ef4444;
+
+  /* -- Typography: Font Families ----------------------------------------- */
+  --ff-heading:        'Geist', system-ui, -apple-system, sans-serif;
+  --ff-body:           'Inter', system-ui, -apple-system, sans-serif;
+
+  /* -- Typography: Fluid Sizes ------------------------------------------- */
+  --fs-display:        clamp(2.75rem, 5vw + 1rem, 4.5rem);
+  --fs-h1:             clamp(2.25rem, 4vw + 0.5rem, 3.5rem);
+  --fs-h2:             clamp(1.75rem, 3vw + 0.5rem, 2.75rem);
+  --fs-h3:             clamp(1.25rem, 2vw + 0.25rem, 1.75rem);
+  --fs-h4:             clamp(1.1rem, 1.5vw + 0.15rem, 1.35rem);
+  --fs-body:           clamp(0.95rem, 0.5vw + 0.75rem, 1.1rem);
+  --fs-body-sm:        clamp(0.85rem, 0.4vw + 0.7rem, 0.95rem);
+  --fs-small:          clamp(0.78rem, 0.3vw + 0.65rem, 0.875rem);
+  --fs-xs:             0.75rem;
+  --fs-label:          0.6875rem;
+
+  /* -- Typography: Weights ----------------------------------------------- */
+  --fw-light:          300;
+  --fw-regular:        400;
+  --fw-medium:         500;
+  --fw-semibold:       600;
+  --fw-bold:           700;
+  --fw-extrabold:      800;
+
+  /* -- Typography: Line Heights ------------------------------------------ */
+  --lh-tight:          1.1;
+  --lh-snug:           1.3;
+  --lh-normal:         1.6;
+  --lh-relaxed:        1.8;
+
+  /* -- Typography: Letter Spacing ---------------------------------------- */
+  --ls-tight:          -0.02em;
+  --ls-normal:         0;
+  --ls-wide:           0.04em;
+  --ls-wider:          0.08em;
+  --ls-widest:         0.14em;
+
+  /* -- Spacing Scale ----------------------------------------------------- */
+  --sp-2xs:            0.25rem;   /*  4px */
+  --sp-xs:             0.5rem;    /*  8px */
+  --sp-sm:             0.75rem;   /* 12px */
+  --sp-md:             1rem;      /* 16px */
+  --sp-lg:             1.5rem;    /* 24px */
+  --sp-xl:             2rem;      /* 32px */
+  --sp-2xl:            3rem;      /* 48px */
+  --sp-3xl:            4rem;      /* 64px */
+  --sp-4xl:            6rem;      /* 96px */
+  --sp-5xl:            8rem;      /* 128px */
+
+  /* -- Layout ------------------------------------------------------------ */
+  --max-width:         1200px;
+  --max-width-narrow:  800px;
+  --max-width-wide:    1400px;
+  --nav-height:        72px;
+  --section-pad-y:     clamp(4rem, 8vw, 8rem);
+
+  /* -- Borders & Radius -------------------------------------------------- */
+  --radius-xs:         2px;
+  --radius-sm:         4px;
+  --radius-md:         8px;
+  --radius-lg:         12px;
+  --radius-xl:         16px;
+  --radius-2xl:        24px;
+  --radius-pill:       9999px;
+
+  /* -- Shadows ----------------------------------------------------------- */
+  --shadow-sm:         0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-md:         0 4px 12px rgba(0, 0, 0, 0.5);
+  --shadow-lg:         0 8px 30px rgba(0, 0, 0, 0.6);
+  --shadow-xl:         0 16px 48px rgba(0, 0, 0, 0.7);
+  --shadow-glow:       0 0 24px rgba(200, 16, 46, 0.15);
+  --shadow-glow-accent:0 0 24px rgba(212, 168, 83, 0.10);
+
+  /* -- Motion ------------------------------------------------------------ */
+  --ease-out:          cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out:       cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-spring:       cubic-bezier(0.34, 1.56, 0.64, 1);
+  --duration-instant:  100ms;
+  --duration-fast:     150ms;
+  --duration:          300ms;
+  --duration-slow:     500ms;
+  --duration-slower:   800ms;
+
+  /* -- Z-Index Scale ----------------------------------------------------- */
+  --z-behind:          -1;
+  --z-base:            1;
+  --z-dropdown:        100;
+  --z-sticky:          200;
+  --z-overlay:         300;
+  --z-modal:           400;
+  --z-toast:           500;
+  --z-max:             9999;
+}
+
+/* -- Reduced Motion Override --------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-instant:  0ms;
+    --duration-fast:     0ms;
+    --duration:          0ms;
+    --duration-slow:     0ms;
+    --duration-slower:   0ms;
+  }
+}

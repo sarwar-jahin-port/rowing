@@ -1,0 +1,144 @@
+/* ==========================================================================
+   BASE STYLES
+   Foundational element styles applied via design tokens.
+   ========================================================================== */
+
+/* -- Body ---------------------------------------------------------------- */
+body {
+  font-family: var(--ff-body);
+  font-size: var(--fs-body);
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-normal);
+  color: var(--c-text);
+  background-color: var(--c-bg);
+  overflow-x: hidden;
+}
+
+/* -- Noise Grain Overlay ------------------------------------------------- */
+.noise {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-max);
+  pointer-events: none;
+  opacity: 0.035;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* -- Headings ------------------------------------------------------------ */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--ff-heading);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-tight);
+  color: var(--c-text);
+}
+
+h1 { font-size: var(--fs-h1); }
+h2 { font-size: var(--fs-h2); }
+h3 { font-size: var(--fs-h3); }
+h4 { font-size: var(--fs-h4); }
+
+/* -- Paragraphs ---------------------------------------------------------- */
+p {
+  color: var(--c-text-2);
+  max-width: 68ch;
+}
+
+p + p {
+  margin-top: var(--sp-md);
+}
+
+/* -- Links --------------------------------------------------------------- */
+a {
+  transition: color var(--duration-fast) var(--ease-out),
+              opacity var(--duration-fast) var(--ease-out);
+}
+
+a:focus-visible {
+  outline: 2px solid var(--c-primary);
+  outline-offset: 3px;
+  border-radius: var(--radius-xs);
+}
+
+/* -- Strong / Bold ------------------------------------------------------- */
+strong, b {
+  font-weight: var(--fw-semibold);
+  color: var(--c-text);
+}
+
+/* -- Small --------------------------------------------------------------- */
+small {
+  font-size: var(--fs-small);
+  color: var(--c-text-3);
+}
+
+/* -- Selection ----------------------------------------------------------- */
+::selection {
+  background-color: var(--c-primary);
+  color: var(--c-text);
+}
+
+/* -- Scrollbar (Webkit) -------------------------------------------------- */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--c-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--c-surface-raised);
+  border-radius: var(--radius-pill);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--c-text-3);
+}
+
+/* Firefox scrollbar */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--c-surface-raised) var(--c-bg);
+}
+
+/* -- Focus Styles (Global) ----------------------------------------------- */
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--c-primary);
+  outline-offset: 3px;
+}
+
+/* -- Section Labels / Eyebrows ------------------------------------------- */
+.section-label {
+  display: inline-block;
+  font-family: var(--ff-body);
+  font-size: var(--fs-label);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-widest);
+  text-transform: uppercase;
+  color: var(--c-primary);
+  margin-bottom: var(--sp-lg);
+}
+
+/* -- Section Headlines --------------------------------------------------- */
+.section-headline {
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-extrabold);
+  line-height: var(--lh-snug);
+  margin-bottom: var(--sp-lg);
+  max-width: 18ch;
+}
+
+/* -- Section Subtext ----------------------------------------------------- */
+.section-subtext {
+  font-size: var(--fs-body);
+  color: var(--c-text-2);
+  line-height: var(--lh-relaxed);
+  max-width: 60ch;
+}

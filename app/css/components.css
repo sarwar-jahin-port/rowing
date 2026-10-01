@@ -1,0 +1,175 @@
+/* ==========================================================================
+   COMPONENTS
+   Reusable UI primitives: buttons, pills, cards, etc.
+   ========================================================================== */
+
+/* -- Buttons ------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-xs);
+  font-family: var(--ff-body);
+  font-size: var(--fs-body-sm);
+  font-weight: var(--fw-semibold);
+  line-height: 1;
+  padding: 0.875rem 1.75rem;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all var(--duration) var(--ease-out);
+  -webkit-tap-highlight-color: transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--c-primary);
+  outline-offset: 3px;
+}
+
+/* Primary (Red) */
+.btn--primary {
+  background: var(--c-primary);
+  color: #fff;
+  border-color: var(--c-primary);
+}
+
+.btn--primary:hover {
+  background: var(--c-primary-hover);
+  border-color: var(--c-primary-hover);
+  box-shadow: var(--shadow-glow);
+  transform: translateY(-1px);
+}
+
+.btn--primary:active {
+  transform: translateY(0);
+}
+
+/* Secondary (Outline / Ghost) */
+.btn--secondary {
+  background: transparent;
+  color: var(--c-text);
+  border-color: var(--c-border-hover);
+}
+
+.btn--secondary:hover {
+  border-color: var(--c-text-3);
+  background: rgba(255, 255, 255, 0.03);
+  transform: translateY(-1px);
+}
+
+/* White (for dark nav) */
+.btn--white {
+  background: var(--c-text);
+  color: var(--c-text-inverse);
+}
+
+.btn--white:hover {
+  background: #fff;
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+/* Small variant */
+.btn--sm {
+  font-size: var(--fs-small);
+  padding: 0.625rem 1.25rem;
+}
+
+/* Large variant */
+.btn--lg {
+  font-size: var(--fs-body);
+  padding: 1rem 2.25rem;
+}
+
+/* Arrow icon inside button */
+.btn .arr {
+  display: inline-block;
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.btn:hover .arr {
+  transform: translateX(3px);
+}
+
+/* -- Pills / Badges ------------------------------------------------------ */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-xs);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  color: var(--c-text-2);
+  background: var(--c-surface-raised);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-pill);
+  padding: 0.4rem 1rem;
+}
+
+/* Animated pulse dot inside pill */
+.pulse {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--c-success);
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4); }
+  50%      { opacity: 0.7; box-shadow: 0 0 0 6px rgba(34, 197, 94, 0); }
+}
+
+/* -- Cards --------------------------------------------------------------- */
+.card {
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-xl);
+  transition: border-color var(--duration) var(--ease-out),
+              box-shadow var(--duration) var(--ease-out),
+              transform var(--duration) var(--ease-out);
+}
+
+.card:hover {
+  border-color: var(--c-border-hover);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+/* Card with glow accent */
+.card--glow:hover {
+  border-color: var(--c-primary-muted);
+  box-shadow: var(--shadow-glow);
+}
+
+/* Card header icon/emoji */
+.card__icon {
+  font-size: 1.75rem;
+  margin-bottom: var(--sp-md);
+}
+
+.card__title {
+  font-family: var(--ff-heading);
+  font-size: var(--fs-h4);
+  font-weight: var(--fw-semibold);
+  color: var(--c-text);
+  margin-bottom: var(--sp-xs);
+}
+
+.card__text {
+  font-size: var(--fs-body-sm);
+  color: var(--c-text-2);
+  line-height: var(--lh-relaxed);
+}
+
+/* -- Star Rating --------------------------------------------------------- */
+.stars {
+  color: var(--c-accent);
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+}
