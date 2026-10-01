@@ -73,6 +73,7 @@
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/utilities.css">
   <link rel="stylesheet" href="css/nav.css">
+  <link rel="stylesheet" href="css/hero.css">
 
   <!-- ============ Theme Initialization (Prevent FOUC) ============ -->
   <script>
@@ -166,9 +167,85 @@
     <main role="main">
 
       <!-- HERO -->
-      <!-- Section: Hero — Step 1 -->
+      <section class="hero wrap" id="home" aria-label="Hero">
+        <div class="hero__grid">
+          
+          <!-- Left Content -->
+          <div class="hero__content">
+            <div class="pill h-anim-up h-delay-1">
+              <span class="pulse"></span> 03 spots available this month
+            </div>
+            
+            <h1 class="hero__title h-anim-up h-delay-2">
+              Your Club Has the Story.<br>We Make Sure People See It.
+            </h1>
+            
+            <p class="hero__subtext h-anim-up h-delay-3">
+              From training and race day to new recruits and long-time alumni, we turn every important club moment into planned, on-brand, publish-ready social content.
+            </p>
+            
+            <div class="hero__ctas h-anim-up h-delay-4">
+              <a href="https://calendly.com/" target="_blank" rel="noopener" class="btn btn--primary btn--lg">
+                Book a Free Audit <span class="arr">→</span>
+              </a>
+              <a href="#work" class="btn btn--secondary btn--lg">
+                See Our Work
+              </a>
+            </div>
+            
+            <!-- Trust Line -->
+            <div class="hero__trust h-anim-up h-delay-5">
+              <div class="hero__avatars">
+                <div class="hero__avatar"></div>
+                <div class="hero__avatar"></div>
+                <div class="hero__avatar"></div>
+                <div class="hero__avatar"></div>
+                <div class="hero__avatar"></div>
+              </div>
+              <div class="hero__trust-text">
+                <span class="stars" aria-label="5 out of 5 stars">★★★★★</span>
+                <p>Rated 5/5 by the clubs we work with</p>
+              </div>
+            </div>
+          </div>
 
-      <!-- TRUST STRIP / LOGO BAR -->
+          <!-- Right Video Embed -->
+          <div class="hero__media-panel h-anim-scale h-delay-6">
+            <div class="video-wrapper">
+              <iframe 
+                src="https://www.youtube.com/embed/3B3sWGJ3sSg?si=vsl-embed&rel=0&modestbranding=1" 
+                title="Oar &amp; Blade Showreel" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                allowfullscreen 
+                loading="lazy">
+              </iframe>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Full-Width Marquee -->
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee__inner">
+          <div class="marquee__content">
+            <span class="marquee__item">Club Stories</span>
+            <span class="marquee__item">Regatta Moments</span>
+            <span class="marquee__item">Athlete Spotlights</span>
+            <span class="marquee__item">Recruitment Content</span>
+            <span class="marquee__item">Alumni Visibility</span>
+          </div>
+          <!-- Duplicate for seamless looping -->
+          <div class="marquee__content">
+            <span class="marquee__item">Club Stories</span>
+            <span class="marquee__item">Regatta Moments</span>
+            <span class="marquee__item">Athlete Spotlights</span>
+            <span class="marquee__item">Recruitment Content</span>
+            <span class="marquee__item">Alumni Visibility</span>
+          </div>
+        </div>
+      </div>      <!-- TRUST STRIP / LOGO BAR -->
       <!-- Section: Trust Strip — Step 2 -->
 
       <!-- PROBLEM — THE CONTENT GAP -->

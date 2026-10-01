@@ -1,0 +1,246 @@
+/* ==========================================================================
+   HERO SECTION
+   Top above-the-fold layout, video embed, and marquee.
+   ========================================================================== */
+
+/* -- Layout -------------------------------------------------------------- */
+.hero {
+  /* Offset for fixed nav plus some breathing room */
+  padding-top: calc(var(--nav-height) + var(--sp-3xl));
+  padding-bottom: var(--sp-3xl);
+  overflow: hidden; /* prevent animation scrollbars */
+}
+
+.hero__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-2xl);
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .hero__grid {
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: var(--sp-xl);
+  }
+}
+
+/* -- Content Elements ---------------------------------------------------- */
+.hero__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.hero__title {
+  margin-top: var(--sp-md);
+  margin-bottom: var(--sp-md);
+  max-width: 16ch;
+}
+
+.hero__subtext {
+  font-size: var(--fs-body);
+  color: var(--c-text-2);
+  line-height: var(--lh-relaxed);
+  max-width: 52ch;
+  margin-bottom: var(--sp-xl);
+}
+
+.hero__ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-md);
+  margin-bottom: var(--sp-xl);
+  width: 100%;
+}
+
+@media (max-width: 640px) {
+  .hero__ctas .btn {
+    width: 100%;
+  }
+}
+
+/* -- Trust Line ---------------------------------------------------------- */
+.hero__trust {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-md);
+  margin-top: var(--sp-md);
+  padding-top: var(--sp-lg);
+  border-top: 1px solid var(--c-divider);
+  width: 100%;
+  max-width: 500px;
+}
+
+.hero__avatars {
+  display: flex;
+  align-items: center;
+}
+
+.hero__avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-pill);
+  border: 2px solid var(--c-bg);
+  background: linear-gradient(135deg, #e2e2e5, #c8c8cc);
+  margin-left: -10px;
+  position: relative;
+  z-index: 1;
+}
+.hero__avatar:first-child { margin-left: 0; z-index: 5; }
+.hero__avatar:nth-child(2) { z-index: 4; }
+.hero__avatar:nth-child(3) { z-index: 3; }
+.hero__avatar:nth-child(4) { z-index: 2; }
+
+/* Dark mode avatar gradient */
+:root[data-theme="dark"] .hero__avatar {
+  background: linear-gradient(135deg, #2B2D33, #161821);
+}
+
+.hero__trust-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.hero__trust-text p {
+  font-size: var(--fs-xs);
+  color: var(--c-text-3);
+  font-weight: var(--fw-medium);
+  margin: 0;
+}
+
+/* -- Video Embed Panel --------------------------------------------------- */
+.hero__media-panel {
+  width: 100%;
+  position: relative;
+}
+
+.video-wrapper {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-xl);
+  background: var(--c-surface-raised);
+  border: 1px solid var(--c-border);
+  position: relative;
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  object-fit: cover;
+}
+
+/* Subtle glowing backdrop behind the video */
+.hero__media-panel::before {
+  content: '';
+  position: absolute;
+  inset: -10%;
+  background: radial-gradient(circle, var(--c-primary-muted) 0%, transparent 60%);
+  z-index: -1;
+  filter: blur(40px);
+  border-radius: 50%;
+}
+
+/* -- Scrolling Marquee --------------------------------------------------- */
+.marquee {
+  width: 100%;
+  overflow: hidden;
+  background: var(--c-bg-alt);
+  border-top: 1px solid var(--c-border);
+  border-bottom: 1px solid var(--c-border);
+  padding: var(--sp-md) 0;
+  margin-top: var(--sp-xl);
+  display: flex;
+}
+
+.marquee__inner {
+  display: flex;
+  width: max-content;
+  animation: scroll-left 30s linear infinite;
+}
+
+.marquee:hover .marquee__inner {
+  animation-play-state: paused;
+}
+
+.marquee__content {
+  display: flex;
+  gap: var(--sp-xl);
+  padding-right: var(--sp-xl);
+  align-items: center;
+}
+
+.marquee__item {
+  font-family: var(--ff-body);
+  font-size: var(--fs-small);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-widest);
+  text-transform: uppercase;
+  color: var(--c-text-3);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-xl);
+  white-space: nowrap;
+}
+
+/* Dot separator */
+.marquee__item::after {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  background: var(--c-primary);
+  border-radius: 50%;
+}
+
+@keyframes scroll-left {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* -- Load Animations (No Scroll Reveal) ---------------------------------- */
+@keyframes hero-fade-up {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-fade-scale {
+  0% {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.h-anim-up,
+.h-anim-scale {
+  opacity: 0;
+  animation-fill-mode: both;
+}
+
+.h-anim-up { animation-name: hero-fade-up; animation-duration: 500ms; animation-timing-function: var(--ease-out); }
+.h-anim-scale { animation-name: hero-fade-scale; animation-duration: 700ms; animation-timing-function: var(--ease-spring); }
+
+/* Animation delays */
+.h-delay-1 { animation-delay: 100ms; }
+.h-delay-2 { animation-delay: 200ms; }
+.h-delay-3 { animation-delay: 300ms; }
+.h-delay-4 { animation-delay: 400ms; }
+.h-delay-5 { animation-delay: 500ms; }
+.h-delay-6 { animation-delay: 600ms; }
