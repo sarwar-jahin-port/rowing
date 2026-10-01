@@ -1,0 +1,228 @@
+/* ==========================================================================
+   CASE STUDY SECTION
+   "Before & After" layout mimicking premium UI, adapting to themes.
+   ========================================================================== */
+
+#case-study {
+  padding-bottom: var(--sp-4xl);
+}
+
+.case__header {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.case__header .section-headline {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.case__header .section-subtext {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* -- The Main Card (Adapts to Light/Dark) -------------------------------- */
+.case-card {
+  background-color: var(--c-surface-raised);
+  border-radius: 32px;
+  border: 1px solid var(--c-border);
+  padding: var(--sp-3xl) var(--sp-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-shadow: var(--shadow-xl);
+  position: relative;
+  overflow: hidden;
+  margin-top: var(--sp-2xl);
+  transition: background-color var(--duration-slow) var(--ease-out),
+              border-color var(--duration-slow) var(--ease-out),
+              box-shadow var(--duration-slow) var(--ease-out);
+}
+
+@media (min-width: 768px) {
+  .case-card {
+    padding: var(--sp-4xl);
+  }
+}
+
+/* Subtle glow behind the card content */
+.case-card::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  max-width: 600px;
+  aspect-ratio: 1;
+  background: radial-gradient(circle, var(--c-primary-muted) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.case-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* -- Typography Inside Card ---------------------------------------------- */
+.case-card__label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-xs);
+  font-family: var(--ff-body);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-widest);
+  text-transform: uppercase;
+  color: var(--c-text-3);
+  margin-bottom: var(--sp-md);
+}
+
+.case-card__label .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--c-primary);
+}
+
+.case-card__title {
+  font-family: var(--ff-heading);
+  font-size: clamp(1.75rem, 4vw, 3rem);
+  font-weight: var(--fw-bold);
+  color: var(--c-text);
+  margin-bottom: var(--sp-sm);
+  line-height: var(--lh-tight);
+}
+
+.case-card__subtitle {
+  font-size: var(--fs-body);
+  color: var(--c-text-2);
+  max-width: 65ch;
+  line-height: var(--lh-relaxed);
+  margin-bottom: var(--sp-3xl);
+}
+
+/* -- Comparison Layout --------------------------------------------------- */
+.case-compare {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-xl);
+  width: 100%;
+  max-width: 1000px;
+}
+
+@media (max-width: 768px) {
+  .case-compare {
+    flex-direction: column;
+    gap: var(--sp-2xl);
+  }
+}
+
+/* -- Phone Columns ------------------------------------------------------- */
+.case-phone-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  width: 100%;
+}
+
+/* Pill floating over the image */
+.badge-pill {
+  background: var(--c-surface-overlay);
+  border: 1px solid var(--c-border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: var(--c-text);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-widest);
+  padding: 8px 20px;
+  border-radius: 24px;
+  text-transform: uppercase;
+  z-index: 5;
+  margin-bottom: -15%; /* Pull down into the transparent space of the image */
+  box-shadow: var(--shadow-sm);
+}
+
+.badge-pill--active {
+  background: var(--c-primary);
+  border-color: var(--c-primary);
+  color: #FFFFFF;
+}
+
+/* Image wrapper specifically built to zoom in on padded transparent square images */
+.case-image-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 300px; /* Dictates the final column width footprint */
+  pointer-events: none; /* Prevents zooming dragging issues */
+}
+
+.case-image {
+  /* Zooms the image using negative margins to guarantee perfect cross-browser centering */
+  display: block;
+  width: 220%;
+  max-width: none;
+  margin-left: -60%; /* (220 - 100) / 2 = 60 */
+  background: transparent;
+  box-shadow: none;
+  border-radius: 0;
+  border: none;
+  transition: transform var(--duration-slow) var(--ease-out);
+}
+
+.case-phone-col:hover .case-image {
+  transform: translateY(-4px) scale(1.02);
+}
+
+/* -- Bottom Stats -------------------------------------------------------- */
+.case-stat {
+  text-align: center;
+  margin-top: -15%; /* Pull up into the transparent space of the image */
+  z-index: 5;
+  position: relative;
+}
+
+.case-stat h4 {
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-bold);
+  color: var(--c-text);
+  margin-bottom: 4px;
+}
+
+.case-stat p {
+  font-size: var(--fs-xs);
+  color: var(--c-text-3);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wide);
+}
+
+/* -- Center Arrow -------------------------------------------------------- */
+.case-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--c-surface-overlay);
+  border: 1px solid var(--c-border);
+  color: var(--c-text-2);
+  flex-shrink: 0;
+  box-shadow: var(--shadow-sm);
+  z-index: 5;
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .case-arrow {
+    transform: rotate(90deg);
+  }
+}
+

@@ -1,0 +1,61 @@
+/* ==========================================================================
+   PROBLEM SECTION
+   "The Content Gap" — Pain point cards and typography alignment.
+   ========================================================================== */
+
+/* -- Header Layout ------------------------------------------------------- */
+.problem__header {
+  max-width: 840px; /* Keep the paragraph text readable */
+}
+
+.problem__header .section-headline {
+  max-width: 22ch; /* Optimize typographic breaking */
+}
+
+/* -- Card Specifics ------------------------------------------------------ */
+#problem .card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+#problem .card__icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  background: var(--c-primary-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--sp-lg);
+  color: var(--c-primary);
+  transition: transform var(--duration) var(--ease-spring),
+              background-color var(--duration) var(--ease-out),
+              color var(--duration) var(--ease-out);
+}
+
+#problem .card:hover .card__icon {
+  transform: scale(1.15) rotate(-5deg);
+  background: var(--c-primary);
+  color: #ffffff;
+}
+
+#problem .card__icon svg {
+  width: 24px;
+  height: 24px;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+
+#problem .card__title {
+  line-height: var(--lh-snug);
+  margin-bottom: var(--sp-sm);
+}
+
+#problem .card__text {
+  flex-grow: 1; /* Pushes bottom if needed */
+}
+
