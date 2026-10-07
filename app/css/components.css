@@ -17,7 +17,8 @@
   border-radius: var(--radius-md);
   border: 1px solid transparent;
   cursor: pointer;
-  white-space: nowrap;
+  white-space: normal;
+  text-align: center;
   transition: all var(--duration) var(--ease-out);
   -webkit-tap-highlight-color: transparent;
   position: relative;

@@ -1,0 +1,121 @@
+/* ==========================================================================
+   CONTACT SECTION
+   ========================================================================== */
+
+.contact-card {
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-xl);
+  padding: var(--sp-3xl) var(--sp-lg);
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle glow effect behind the contact card */
+.contact-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at top right, rgba(200, 16, 46, 0.05), transparent 50%);
+  pointer-events: none;
+}
+
+.contact__header {
+  margin-bottom: var(--sp-2xl);
+  position: relative;
+  z-index: 1;
+}
+
+.contact-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-md);
+  margin-bottom: var(--sp-2xl);
+  position: relative;
+  z-index: 1;
+}
+
+@media (min-width: 640px) {
+  .contact-actions {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
+.contact-or {
+  font-size: var(--fs-body-sm);
+  color: var(--c-text-3);
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+/* -- Form ---------------------------------------------------------------- */
+.contact-form-wrapper {
+  max-width: 700px;
+  margin: 0 auto;
+  background: var(--c-bg-alt);
+  border: 1px solid var(--c-divider);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-2xl);
+  position: relative;
+  z-index: 1;
+  /* Hidden by default until "Request Audit" is clicked, or shown always for better conversion */
+  /* User spec implies it's visible. Let's just keep it visible for UX */
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-lg);
+}
+
+@media (min-width: 640px) {
+  .form-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-xs);
+}
+
+.form-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--c-text-2);
+}
+
+.form-group input,
+.form-group select {
+  height: 48px;
+  padding: 0 16px;
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-md);
+  color: var(--c-text);
+  font-size: var(--fs-body-sm);
+  transition: border-color 200ms ease, box-shadow 200ms ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--c-primary);
+  box-shadow: 0 0 0 3px var(--c-primary-muted);
+}
+
+.form-group input::placeholder {
+  color: var(--c-text-3);
+}
+
+/* Native HTML5 Validation styling trick */
+.form-group input:invalid:not(:placeholder-shown) {
+  border-color: #ef4444; /* red */
+}

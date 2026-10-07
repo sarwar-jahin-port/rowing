@@ -173,4 +173,70 @@
   } else {
     init();
   }
+
+
+  /* ==========================================================================
+     LIGHTBOX
+     ========================================================================== */
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const btnClose = document.querySelector('.lightbox__close');
+  const btnPrev = document.querySelector('.lightbox__nav--prev');
+  const btnNext = document.querySelector('.lightbox__nav--next');
+  
+  if (lightbox && lightboxImg) {
+    const portfolioCards = Array.from(document.querySelectorAll('.portfolio-card'));
+    let currentIndex = 0;
+
+    const openLightbox = (index) => {
+      currentIndex = index;
+      const imgSrc = portfolioCards[index].getAttribute('data-lightbox');
+      lightboxImg.src = imgSrc;
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden'; // Prevent scrolling
+    };
+
+    const closeLightbox = () => {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+      setTimeout(() => { lightboxImg.src = ''; }, 300); // clear after transition
+    };
+
+    const showNext = (e) => {
+      if (e) e.stopPropagation();
+      currentIndex = (currentIndex + 1) % portfolioCards.length;
+      lightboxImg.src = portfolioCards[currentIndex].getAttribute('data-lightbox');
+    };
+
+    const showPrev = (e) => {
+      if (e) e.stopPropagation();
+      currentIndex = (currentIndex - 1 + portfolioCards.length) % portfolioCards.length;
+      lightboxImg.src = portfolioCards[currentIndex].getAttribute('data-lightbox');
+    };
+
+    portfolioCards.forEach((card, index) => {
+      card.addEventListener('click', () => openLightbox(index));
+    });
+
+    if (btnClose) {
+      btnClose.addEventListener('click', closeLightbox);
+    }
+    
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox || e.target === document.querySelector('.lightbox__content')) {
+        closeLightbox();
+      }
+    });
+
+    if (btnNext) btnNext.addEventListener('click', showNext);
+    if (btnPrev) btnPrev.addEventListener('click', showPrev);
+
+    document.addEventListener('keydown', (e) => {
+      if (!lightbox.classList.contains('active')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight') showNext();
+      if (e.key === 'ArrowLeft') showPrev();
+    });
+  }
+
 })();

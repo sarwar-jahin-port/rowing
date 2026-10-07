@@ -4,23 +4,32 @@
    ========================================================================== */
 
 #case-study {
-  padding-bottom: var(--sp-4xl);
+  padding-bottom: var(--sp-2xl);
 }
 
 .case__header {
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
   text-align: center;
+  margin-bottom: var(--sp-lg);
 }
 
 .case__header .section-headline {
+  max-width: none;
   margin-left: auto;
   margin-right: auto;
+}
+@media (min-width: 768px) {
+  .case__header .section-headline {
+    white-space: nowrap;
+    font-size: clamp(2rem, 3.5vw, 3.5rem);
+  }
 }
 
 .case__header .section-subtext {
   margin-left: auto;
   margin-right: auto;
+  max-width: 600px;
 }
 
 /* -- The Main Card (Adapts to Light/Dark) -------------------------------- */
@@ -28,7 +37,7 @@
   background-color: var(--c-surface-raised);
   border-radius: 32px;
   border: 1px solid var(--c-border);
-  padding: var(--sp-3xl) var(--sp-lg);
+  padding: var(--sp-2xl) var(--sp-md);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -36,7 +45,7 @@
   box-shadow: var(--shadow-xl);
   position: relative;
   overflow: hidden;
-  margin-top: var(--sp-2xl);
+  margin-top: var(--sp-lg);
   transition: background-color var(--duration-slow) var(--ease-out),
               border-color var(--duration-slow) var(--ease-out),
               box-shadow var(--duration-slow) var(--ease-out);
@@ -44,7 +53,7 @@
 
 @media (min-width: 768px) {
   .case-card {
-    padding: var(--sp-4xl);
+    padding: var(--sp-2xl) var(--sp-xl);
   }
 }
 
@@ -103,7 +112,7 @@
   color: var(--c-text-2);
   max-width: 65ch;
   line-height: var(--lh-relaxed);
-  margin-bottom: var(--sp-3xl);
+  margin-bottom: var(--sp-xl);
 }
 
 /* -- Comparison Layout --------------------------------------------------- */
@@ -160,16 +169,14 @@
 .case-image-wrapper {
   position: relative;
   width: 100%;
-  max-width: 300px; /* Dictates the final column width footprint */
+  max-width: 500px;
   pointer-events: none; /* Prevents zooming dragging issues */
 }
 
 .case-image {
-  /* Zooms the image using negative margins to guarantee perfect cross-browser centering */
   display: block;
-  width: 220%;
-  max-width: none;
-  margin-left: -60%; /* (220 - 100) / 2 = 60 */
+  width: 100%;
+  height: auto;
   background: transparent;
   box-shadow: none;
   border-radius: 0;
@@ -225,4 +232,3 @@
     transform: rotate(90deg);
   }
 }
-
