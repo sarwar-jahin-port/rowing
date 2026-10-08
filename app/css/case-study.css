@@ -129,6 +129,7 @@
   .case-compare {
     flex-direction: column;
     gap: var(--sp-2xl);
+    align-items: stretch;
   }
 }
 
@@ -169,8 +170,17 @@
 .case-image-wrapper {
   position: relative;
   width: 100%;
-  max-width: 500px;
-  pointer-events: none; /* Prevents zooming dragging issues */
+  max-width: 640px;
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .case-image-wrapper {
+    max-width: 100%;
+  }
+  .case-phone-col {
+    width: 100%;
+  }
 }
 
 .case-image {

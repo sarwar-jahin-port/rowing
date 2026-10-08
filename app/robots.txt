@@ -1,10 +1,4 @@
-# ==========================================================================
-#  robots.txt — Oar & Blade
-# ==========================================================================
-
 User-agent: *
 Allow: /
-Disallow: /assets/icons/
 
-# Sitemap
 Sitemap: https://www.oarandblade.com/sitemap.xml

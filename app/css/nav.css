@@ -38,22 +38,41 @@
 
 /* -- Logo ---------------------------------------------------------------- */
 .logo {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  z-index: calc(var(--z-modal) + 2);
+  flex-shrink: 0;
+}
+
+.logo-img {
+  height: 40px;
+  width: auto;
+  display: block;
+  mix-blend-mode: multiply;
+  transition: opacity var(--duration) ease;
+}
+
+.logo-img--dark { display: none; }
+
+[data-theme="dark"] .logo-img--light { display: none; }
+[data-theme="dark"] .logo-img--dark  {
+  display: block;
+  mix-blend-mode: normal;
+  filter: brightness(0) invert(1);
+}
+
+/* Fallback text logo (if image fails) */
+.logo-text {
   font-family: var(--ff-heading);
   font-weight: var(--fw-bold);
   font-size: 1.25rem;
   color: var(--c-text);
   letter-spacing: var(--ls-tight);
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  gap: var(--sp-xs);
-  z-index: calc(var(--z-modal) + 2); /* Keep above mobile menu */
-  transition: color var(--duration-slow) var(--ease-out);
+  display: none;
 }
 
-.logo span {
-  color: var(--c-primary);
-}
+.logo span { color: var(--c-primary); }
 
 /* -- Desktop Links ------------------------------------------------------- */
 .nav-links {
@@ -296,3 +315,6 @@
 body.menu-open {
   overflow: hidden;
 }
+
+/* Footer logo — same light/dark behaviour, smaller height */
+.footer-logo { height: 36px; }

@@ -1,0 +1,13 @@
+{
+  "name": "Oar & Blade",
+  "short_name": "Oar & Blade",
+  "description": "Social media content partner for rowing clubs worldwide.",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#c8102e",
+  "background_color": "#07080f",
+  "icons": [
+    { "src": "/android-chrome-192x192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/android-chrome-512x512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

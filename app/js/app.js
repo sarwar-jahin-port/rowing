@@ -1,30 +1,16 @@
 'use strict';
 
-/* ==========================================================================
-   APP.JS — Core Application Logic
-   Oar & Blade Portfolio Website
-
-   Architecture:
-   - IIFE to avoid global namespace pollution
-   - IntersectionObserver for scroll reveals (no heavy libraries)
-   - Passive event listeners where applicable
-   - Graceful degradation for older browsers
-   ========================================================================== */
-
 (() => {
+
   /* -----------------------------------------------------------------------
-     Scroll Reveal — IntersectionObserver
-     Elements with class .reveal fade in when they enter the viewport.
-     Once revealed, the observer disconnects that element (fire-once).
+     Scroll Reveal
      ----------------------------------------------------------------------- */
   function initScrollReveal() {
     const reveals = document.querySelectorAll('.reveal');
     if (!reveals.length || !('IntersectionObserver' in window)) {
-      /* Fallback: make everything visible immediately */
       reveals.forEach(el => el.classList.add('revealed'));
       return;
     }
-
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -34,75 +20,46 @@
           }
         });
       },
-      {
-        threshold: 0.08,
-        rootMargin: '0px 0px -40px 0px',
-      }
+      { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
     );
-
-    reveals.forEach((el) => observer.observe(el));
+    reveals.forEach(el => observer.observe(el));
   }
 
   /* -----------------------------------------------------------------------
-     Smooth Scroll — Anchor Links
-     Scrolls to the target section with native smooth behavior.
-     Also closes mobile menu if open.
+     Smooth Scroll
      ----------------------------------------------------------------------- */
   function initSmoothScroll() {
     document.addEventListener('click', (e) => {
       const anchor = e.target.closest('a[href^="#"]');
       if (!anchor) return;
-
       const targetId = anchor.getAttribute('href');
       if (targetId === '#') return;
-
       const target = document.querySelector(targetId);
       if (!target) return;
-
       e.preventDefault();
-
-      const navHeight = parseInt(
-        getComputedStyle(document.documentElement)
-          .getPropertyValue('--nav-height'),
-        10
-      ) || 72;
-
-      const top = target.getBoundingClientRect().top + window.scrollY - navHeight;
-
-      window.scrollTo({ top, behavior: 'smooth' });
-
-      /* Close mobile menu if open */
+      const navHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-height'), 10) || 72;
+      window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - navHeight, behavior: 'smooth' });
       closeMobileMenu();
     });
   }
 
   /* -----------------------------------------------------------------------
-     Navbar — Scroll State
-     Adds .scrolled class when user scrolls past threshold.
+     Navbar Scroll State
      ----------------------------------------------------------------------- */
   function initNavScroll() {
     const nav = document.getElementById('nav');
     if (!nav) return;
-
-    const threshold = 50;
-
-    const onScroll = () => {
-      nav.classList.toggle('scrolled', window.scrollY > threshold);
-    };
-
+    const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 50);
     window.addEventListener('scroll', onScroll, { passive: true });
-
-    /* Run once on load in case page is already scrolled */
     onScroll();
   }
 
   /* -----------------------------------------------------------------------
-     Mobile Menu — Toggle
+     Mobile Menu
      ----------------------------------------------------------------------- */
   function initMobileMenu() {
     const burger = document.getElementById('burger');
     if (!burger) return;
-
     burger.addEventListener('click', () => {
       const isOpen = document.body.classList.toggle('menu-open');
       burger.setAttribute('aria-expanded', String(isOpen));
@@ -120,8 +77,7 @@
   }
 
   /* -----------------------------------------------------------------------
-     Current Year — Footer
-     Dynamically inserts current year to avoid stale copyright.
+     Current Year
      ----------------------------------------------------------------------- */
   function initCurrentYear() {
     const el = document.getElementById('currentYear');
@@ -134,20 +90,11 @@
   function initTheme() {
     const toggleBtn = document.getElementById('themeToggle');
     if (!toggleBtn) return;
-
-    // Listen for manual toggle
     toggleBtn.addEventListener('click', () => {
-      const currentTheme = document.documentElement.getAttribute('data-theme');
-      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-      
+      const newTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
       document.documentElement.setAttribute('data-theme', newTheme);
-      
-      try {
-        localStorage.setItem('theme', newTheme);
-      } catch (e) {}
+      try { localStorage.setItem('theme', newTheme); } catch (e) {}
     });
-
-    // Listen for system preference changes (if user hasn't forced a theme)
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
       if (!localStorage.getItem('theme')) {
         document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
@@ -156,7 +103,116 @@
   }
 
   /* -----------------------------------------------------------------------
-     Bootstrap — Initialize All Modules
+     Generic Lightbox factory
+     One lightbox element, multiple trigger groups — each group registers
+     its own click handlers but shares one close/nav/keyboard binding.
+     ----------------------------------------------------------------------- */
+  function makeLightbox({ lightboxEl, imgEl, counterEl, srcAttr = 'data-lightbox' }) {
+    if (!lightboxEl || !imgEl) return;
+
+    let activeTriggers = [];
+    let current = 0;
+
+    const open = (triggers, idx) => {
+      activeTriggers = triggers;
+      current = ((idx % triggers.length) + triggers.length) % triggers.length;
+      imgEl.src = activeTriggers[current].getAttribute(srcAttr);
+      if (counterEl) counterEl.textContent = `${String(current + 1).padStart(2, '0')} / ${activeTriggers.length}`;
+      lightboxEl.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    };
+
+    const nav = (delta) => {
+      if (!activeTriggers.length) return;
+      current = ((current + delta) % activeTriggers.length + activeTriggers.length) % activeTriggers.length;
+      imgEl.src = activeTriggers[current].getAttribute(srcAttr);
+      if (counterEl) counterEl.textContent = `${String(current + 1).padStart(2, '0')} / ${activeTriggers.length}`;
+    };
+
+    const close = () => {
+      lightboxEl.classList.remove('active');
+      document.body.style.overflow = '';
+      setTimeout(() => { imgEl.src = ''; }, 300);
+    };
+
+    lightboxEl.querySelector('[class*="close"]')?.addEventListener('click', close);
+    lightboxEl.querySelector('[class*="prev"]')?.addEventListener('click', (e) => { e.stopPropagation(); nav(-1); });
+    lightboxEl.querySelector('[class*="next"]')?.addEventListener('click', (e) => { e.stopPropagation(); nav(1); });
+    lightboxEl.addEventListener('click', (e) => { if (e.target === lightboxEl) close(); });
+
+    document.addEventListener('keydown', (e) => {
+      if (!lightboxEl.classList.contains('active')) return;
+      if (e.key === 'Escape') close();
+      if (e.key === 'ArrowRight') nav(1);
+      if (e.key === 'ArrowLeft') nav(-1);
+    });
+
+    /* Returns a register function — call once per trigger group */
+    return (triggers) => {
+      triggers.forEach((el, i) => el.addEventListener('click', () => open(triggers, i)));
+    };
+  }
+
+  /* -----------------------------------------------------------------------
+     Single-trigger-group lightbox (comments etc)
+     ----------------------------------------------------------------------- */
+  function makeSimpleLightbox({ lightboxEl, imgEl, counterEl, triggers, srcAttr = 'data-src' }) {
+    if (!lightboxEl || !imgEl || !triggers.length) return;
+    let current = 0;
+
+    const open = (idx) => {
+      current = ((idx % triggers.length) + triggers.length) % triggers.length;
+      imgEl.src = triggers[current].getAttribute(srcAttr);
+      if (counterEl) counterEl.textContent = `${String(current + 1).padStart(2, '0')} / ${triggers.length}`;
+      lightboxEl.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    };
+
+    const nav = (delta) => open(current + delta);
+
+    const close = () => {
+      lightboxEl.classList.remove('active');
+      document.body.style.overflow = '';
+      setTimeout(() => { imgEl.src = ''; }, 300);
+    };
+
+    triggers.forEach((el, i) => el.addEventListener('click', () => open(i)));
+    lightboxEl.querySelector('[class*="close"]')?.addEventListener('click', close);
+    lightboxEl.querySelector('[class*="prev"]')?.addEventListener('click', (e) => { e.stopPropagation(); nav(-1); });
+    lightboxEl.querySelector('[class*="next"]')?.addEventListener('click', (e) => { e.stopPropagation(); nav(1); });
+    lightboxEl.addEventListener('click', (e) => { if (e.target === lightboxEl) close(); });
+    document.addEventListener('keydown', (e) => {
+      if (!lightboxEl.classList.contains('active')) return;
+      if (e.key === 'Escape') close();
+      if (e.key === 'ArrowRight') nav(1);
+      if (e.key === 'ArrowLeft') nav(-1);
+    });
+  }
+
+  /* -----------------------------------------------------------------------
+     Horizontal scroll nav helper
+     ----------------------------------------------------------------------- */
+  function makeScrollNav({ trackId, prevId, nextId, cardWidth = 320, counterId, total }) {
+    const track = document.getElementById(trackId);
+    const prev  = document.getElementById(prevId);
+    const next  = document.getElementById(nextId);
+    const counter = document.getElementById(counterId);
+    if (!track) return;
+
+    const updateCounter = () => {
+      if (!counter || !total) return;
+      const idx = Math.round(track.scrollLeft / cardWidth) + 1;
+      const clamped = Math.min(Math.max(idx, 1), total);
+      counter.textContent = `${String(clamped).padStart(2, '0')} / ${String(total).padStart(2, '0')}`;
+    };
+
+    if (next) next.addEventListener('click', () => track.scrollBy({ left: cardWidth, behavior: 'smooth' }));
+    if (prev) prev.addEventListener('click', () => track.scrollBy({ left: -cardWidth, behavior: 'smooth' }));
+    track.addEventListener('scroll', updateCounter, { passive: true });
+  }
+
+  /* -----------------------------------------------------------------------
+     Bootstrap
      ----------------------------------------------------------------------- */
   function init() {
     initTheme();
@@ -165,78 +221,66 @@
     initSmoothScroll();
     initScrollReveal();
     initCurrentYear();
+
+    /* Shared portfolio/analytics lightbox — one overlay, two groups */
+    const registerGroup = makeLightbox({
+      lightboxEl: document.getElementById('lightbox'),
+      imgEl:      document.getElementById('lightbox-img'),
+      counterEl:  document.getElementById('lightbox-counter'),
+    });
+    if (registerGroup) {
+      registerGroup(Array.from(document.querySelectorAll('.post-card[data-lightbox]')));
+      registerGroup(Array.from(document.querySelectorAll('.analytics-card[data-lightbox]')));
+    }
+
+    /* Wire sp-card data-src from their img src */
+    document.querySelectorAll('.sp-card').forEach(card => {
+      const img = card.querySelector('img');
+      if (img) card.setAttribute('data-src', img.src);
+    });
+
+    /* Comments lightbox */
+    makeSimpleLightbox({
+      lightboxEl: document.getElementById('spLightbox'),
+      imgEl:      document.getElementById('sp-lightbox-img'),
+      counterEl:  document.getElementById('sp-lightbox-counter'),
+      triggers:   Array.from(document.querySelectorAll('.sp-card')),
+      srcAttr:    'data-src',
+    });
+
+    /* Portfolio scroll nav */
+    makeScrollNav({
+      trackId:   'portfolioTrack',
+      prevId:    'portfolioPrev',
+      nextId:    'portfolioNext',
+      cardWidth:  320,
+      counterId: 'portfolioCounter',
+      total:      19,
+    });
+
+    /* Analytics scroll nav */
+    makeScrollNav({
+      trackId:   'analyticsTrack',
+      prevId:    'analyticsPrev',
+      nextId:    'analyticsNext',
+      cardWidth:  360,
+      counterId: 'analyticsCounter',
+      total:      13,
+    });
+
+    /* Reels scroll nav */
+    makeScrollNav({
+      trackId:   'reelsTrack',
+      prevId:    'reelsPrev',
+      nextId:    'reelsNext',
+      cardWidth:  260,
+    });
   }
 
-  /* Execute when DOM is ready */
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else {
     init();
-  }
-
-
-  /* ==========================================================================
-     LIGHTBOX
-     ========================================================================== */
-  const lightbox = document.getElementById('lightbox');
-  const lightboxImg = document.getElementById('lightbox-img');
-  const btnClose = document.querySelector('.lightbox__close');
-  const btnPrev = document.querySelector('.lightbox__nav--prev');
-  const btnNext = document.querySelector('.lightbox__nav--next');
-  
-  if (lightbox && lightboxImg) {
-    const portfolioCards = Array.from(document.querySelectorAll('.portfolio-card'));
-    let currentIndex = 0;
-
-    const openLightbox = (index) => {
-      currentIndex = index;
-      const imgSrc = portfolioCards[index].getAttribute('data-lightbox');
-      lightboxImg.src = imgSrc;
-      lightbox.classList.add('active');
-      document.body.style.overflow = 'hidden'; // Prevent scrolling
-    };
-
-    const closeLightbox = () => {
-      lightbox.classList.remove('active');
-      document.body.style.overflow = '';
-      setTimeout(() => { lightboxImg.src = ''; }, 300); // clear after transition
-    };
-
-    const showNext = (e) => {
-      if (e) e.stopPropagation();
-      currentIndex = (currentIndex + 1) % portfolioCards.length;
-      lightboxImg.src = portfolioCards[currentIndex].getAttribute('data-lightbox');
-    };
-
-    const showPrev = (e) => {
-      if (e) e.stopPropagation();
-      currentIndex = (currentIndex - 1 + portfolioCards.length) % portfolioCards.length;
-      lightboxImg.src = portfolioCards[currentIndex].getAttribute('data-lightbox');
-    };
-
-    portfolioCards.forEach((card, index) => {
-      card.addEventListener('click', () => openLightbox(index));
-    });
-
-    if (btnClose) {
-      btnClose.addEventListener('click', closeLightbox);
-    }
-    
-    lightbox.addEventListener('click', (e) => {
-      if (e.target === lightbox || e.target === document.querySelector('.lightbox__content')) {
-        closeLightbox();
-      }
-    });
-
-    if (btnNext) btnNext.addEventListener('click', showNext);
-    if (btnPrev) btnPrev.addEventListener('click', showPrev);
-
-    document.addEventListener('keydown', (e) => {
-      if (!lightbox.classList.contains('active')) return;
-      if (e.key === 'Escape') closeLightbox();
-      if (e.key === 'ArrowRight') showNext();
-      if (e.key === 'ArrowLeft') showPrev();
-    });
   }
 
 })();

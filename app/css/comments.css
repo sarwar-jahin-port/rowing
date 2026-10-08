@@ -1,0 +1,250 @@
+/* ==========================================================================
+   SOCIAL PROOF — Auto-Scrolling Comments
+   Dual-lane ticker going in opposite directions.
+   ========================================================================== */
+
+.social-proof-section {
+  background: var(--c-bg-alt);
+  overflow: hidden;
+  padding: var(--section-pad-y) 0;
+}
+
+.social-proof-section .section__head {
+  text-align: center;
+  margin-bottom: var(--sp-3xl);
+}
+
+.social-proof-section .section-label {
+  display: inline-block;
+  margin-bottom: var(--sp-md);
+}
+
+.sp-headline {
+  font-family: var(--ff-heading);
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-extrabold);
+  color: var(--c-text);
+  letter-spacing: var(--ls-tight);
+  line-height: var(--lh-tight);
+  margin: 0 0 var(--sp-md);
+}
+
+.sp-subtext {
+  font-size: var(--fs-body);
+  color: var(--c-text-2);
+  max-width: 50ch;
+  margin: 0 auto;
+  line-height: var(--lh-relaxed);
+}
+
+/* -- Ticker Wrapper ---------------------------------------------------------- */
+.sp-ticker-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  /* Fade edges */
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+}
+
+/* -- Single Ticker Row ------------------------------------------------------- */
+.sp-ticker {
+  display: flex;
+  gap: 16px;
+  width: max-content;
+  will-change: transform;
+}
+
+.sp-ticker--fwd {
+  animation: tickerLeft 55s linear infinite;
+}
+
+.sp-ticker--rev {
+  animation: tickerRight 55s linear infinite;
+}
+
+.sp-ticker:hover,
+.sp-ticker--fwd:hover,
+.sp-ticker--rev:hover {
+  animation-play-state: paused;
+}
+
+@keyframes tickerLeft {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes tickerRight {
+  0%   { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+/* -- Comment Card ------------------------------------------------------------ */
+.sp-card {
+  flex-shrink: 0;
+  width: 260px;
+  height: 260px;           /* square */
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.3s var(--ease-out), box-shadow 0.3s ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.sp-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: var(--shadow-lg);
+  z-index: 2;
+}
+
+/* Zoom hint on hover */
+.sp-card::after {
+  content: '↗';
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(200,16,46,0.85);
+  color: #fff;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: scale(0.5);
+  transition: opacity 0.2s ease, transform 0.2s var(--ease-spring);
+}
+
+.sp-card:hover::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.sp-card img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;    /* fill the square, cropping edges slightly */
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  transition: transform 0.4s var(--ease-out);
+}
+
+.sp-card:hover img { transform: scale(1.04); }
+
+@media (max-width: 640px) {
+  .sp-card { width: 220px; height: 220px; }
+}
+
+/* -- Comments Lightbox ---------------------------------------------------- */
+.sp-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  background: rgba(3,3,6,0.97);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.sp-lightbox.active { opacity: 1; visibility: visible; }
+
+.sp-lightbox__close {
+  position: absolute;
+  top: 24px; right: 24px;
+  background: transparent; border: none;
+  color: rgba(255,255,255,0.55);
+  font-size: 40px; width: 48px; height: 48px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: color 0.2s ease;
+  z-index: 2;
+}
+
+.sp-lightbox__close:hover { color: #fff; }
+
+.sp-lightbox__nav {
+  position: absolute;
+  top: 50%; transform: translateY(-50%);
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.7);
+  width: 48px; height: 48px; border-radius: 50%;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px;
+  transition: background 0.2s ease, color 0.2s ease;
+  z-index: 2;
+}
+
+.sp-lightbox__nav:hover { background: var(--c-primary); color: #fff; border-color: var(--c-primary); }
+.sp-lightbox__nav--prev { left: 24px; }
+.sp-lightbox__nav--next { right: 24px; }
+
+.sp-lightbox__content {
+  max-width: 500px;
+  width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sp-lightbox__content img {
+  width: 100%;
+  height: auto;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: var(--radius-xl);
+  box-shadow: 0 32px 80px rgba(0,0,0,0.6);
+  transform: scale(0.95);
+  opacity: 0;
+  transition: transform 0.4s cubic-bezier(0.175,0.885,0.32,1.275), opacity 0.4s ease;
+}
+
+.sp-lightbox.active .sp-lightbox__content img {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.sp-lightbox__counter {
+  position: absolute;
+  bottom: 24px; left: 50%;
+  transform: translateX(-50%);
+  font-size: 13px;
+  color: rgba(255,255,255,0.35);
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 640px) {
+  .sp-lightbox__nav { display: none; }
+}
+
+/* reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .sp-ticker--fwd,
+  .sp-ticker--rev {
+    animation: none;
+  }
+  .sp-ticker-wrap {
+    overflow-x: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+  .sp-ticker {
+    width: auto;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}

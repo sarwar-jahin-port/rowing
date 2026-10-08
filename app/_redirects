@@ -1,0 +1,5 @@
+# Redirect www → non-www (set in DNS, but belt-and-braces)
+https://www.oarandblade.com/* https://www.oarandblade.com/:splat 200
+
+# Catch-all — serve index.html for any unknown path (SPA fallback)
+/* /index.html 200

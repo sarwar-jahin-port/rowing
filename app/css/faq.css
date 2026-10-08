@@ -1,8 +1,8 @@
 /* FAQ Section - Premium Interactive Layout */
 .faq-interactive-section {
   padding: 8rem 0;
-  background-color: var(--color-bg);
-  color: var(--color-text);
+  background-color: var(--c-bg);
+  color: var(--c-text);
   overflow: hidden;
 }
 
@@ -42,7 +42,7 @@
   font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: var(--color-primary);
+  color: var(--c-primary);
   margin-bottom: 1rem;
   font-weight: 600;
 }
@@ -51,7 +51,7 @@
   font-size: clamp(2.5rem, 5vw, 3.5rem);
   font-weight: 700;
   line-height: 1.1;
-  color: var(--color-white);
+  color: var(--c-text);
   letter-spacing: -0.02em;
 }
 
@@ -91,7 +91,7 @@
   text-align: left;
   padding: 1rem 1.2rem;
   cursor: pointer;
-  color: var(--color-text-muted, #9ca3af);
+  color: var(--c-text-2);
   font-size: 1rem;
   font-weight: 500;
   line-height: 1.4;
@@ -122,7 +122,7 @@
 }
 
 .faq-nav-btn:hover {
-  color: var(--color-white);
+  color: var(--c-text);
   transform: translateX(4px);
 }
 
@@ -144,14 +144,14 @@
 }
 
 .faq-nav-btn[aria-selected="true"] {
-  color: var(--color-white);
+  color: var(--c-text);
   background: rgba(255,255,255,0.05);
-  box-shadow: inset 3px 0 0 var(--color-primary);
+  box-shadow: inset 3px 0 0 var(--c-primary);
 }
 
 .faq-nav-btn[aria-selected="true"] .faq-nav-icon {
-  background: var(--color-primary);
-  border-color: var(--color-primary);
+  background: var(--c-primary);
+  border-color: var(--c-primary);
   box-shadow: 0 0 10px rgba(var(--color-primary-rgb), 0.5);
 }
 
@@ -213,7 +213,7 @@
 .faq-a-title {
   font-size: 1.25rem;
   font-weight: 600;
-  color: var(--color-white);
+  color: var(--c-text);
   margin-bottom: 1.25rem;
   line-height: 1.4;
 }
@@ -228,7 +228,7 @@
 .faq-a-text {
   font-size: 1rem;
   line-height: 1.6;
-  color: var(--color-text-muted, #9ca3af);
+  color: var(--c-text-2);
 }
 
 @media (min-width: 768px) {

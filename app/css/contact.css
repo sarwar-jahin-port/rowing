@@ -1,121 +1,188 @@
 /* ==========================================================================
-   CONTACT SECTION
+   CONTACT / FINAL CTA SECTION — Compact Bold Design
    ========================================================================== */
 
-.contact-card {
-  background: var(--c-surface);
-  border: 1px solid var(--c-border);
-  border-radius: var(--radius-xl);
-  padding: var(--sp-3xl) var(--sp-lg);
-  box-shadow: var(--shadow-lg);
+.contact-section {
+  background: #1a1c22;  /* always charcoal — independent of theme */
   position: relative;
   overflow: hidden;
+  padding: clamp(3rem, 6vw, 5rem) 0;
+  min-height: unset;
 }
 
-/* Subtle glow effect behind the contact card */
-.contact-card::before {
+/* Noise overlay on dark background */
+.contact-section::before {
   content: '';
   position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle at top right, rgba(200, 16, 46, 0.05), transparent 50%);
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
   pointer-events: none;
+  opacity: 0.4;
 }
 
-.contact__header {
-  margin-bottom: var(--sp-2xl);
+/* Red streak accent */
+.contact-section::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--c-primary);
+}
+
+.contact-inner {
   position: relative;
   z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: center;
 }
 
-.contact-actions {
+@media (max-width: 768px) {
+  .contact-inner {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+}
+
+/* -- Left: Headline ---------------------------------------------------------- */
+.contact-left {
   display: flex;
   flex-direction: column;
+  gap: var(--sp-xl);
+}
+
+.contact-left .section-label {
+  color: var(--c-primary);
+  opacity: 0.9;
+}
+
+.contact-headline {
+  font-family: var(--ff-heading);
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  font-weight: var(--fw-extrabold);
+  color: #fff;
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  margin: 0;
+}
+
+.contact-headline em {
+  font-style: normal;
+  color: var(--c-primary);
+}
+
+.contact-subtext {
+  font-size: var(--fs-body-sm);
+  color: rgba(255, 255, 255, 0.5);
+  line-height: var(--lh-relaxed);
+  max-width: 44ch;
+  margin: 0;
+}
+
+.contact-cta-row {
+  display: flex;
   align-items: center;
   gap: var(--sp-md);
-  margin-bottom: var(--sp-2xl);
-  position: relative;
-  z-index: 1;
+  flex-wrap: wrap;
 }
 
-@media (min-width: 640px) {
-  .contact-actions {
-    flex-direction: row;
-    justify-content: center;
-  }
-}
-
-.contact-or {
+.contact-cta-row .btn--ghost {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.75);
+  padding: 12px 24px;
+  border-radius: var(--radius-pill);
   font-size: var(--fs-body-sm);
-  color: var(--c-text-3);
-  font-weight: 500;
+  font-weight: var(--fw-medium);
+  text-decoration: none;
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.contact-cta-row .btn--ghost:hover {
+  border-color: rgba(255, 255, 255, 0.5);
+  color: #fff;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* -- Right: Mini Form -------------------------------------------------------- */
+.contact-right {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-2xl);
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  backdrop-filter: blur(8px);
+}
+
+.contact-form-label {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-widest);
   text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: var(--sp-lg);
+  display: block;
 }
 
-/* -- Form ---------------------------------------------------------------- */
-.contact-form-wrapper {
-  max-width: 700px;
-  margin: 0 auto;
-  background: var(--c-bg-alt);
-  border: 1px solid var(--c-divider);
-  border-radius: var(--radius-lg);
-  padding: var(--sp-2xl);
-  position: relative;
-  z-index: 1;
-  /* Hidden by default until "Request Audit" is clicked, or shown always for better conversion */
-  /* User spec implies it's visible. Let's just keep it visible for UX */
-}
-
-.form-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--sp-lg);
-}
-
-@media (min-width: 640px) {
-  .form-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-.form-group {
+.contact-form-mini {
   display: flex;
   flex-direction: column;
-  gap: var(--sp-xs);
+  gap: 12px;
 }
 
-.form-group label {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--c-text-2);
-}
-
-.form-group input,
-.form-group select {
+.contact-form-mini input,
+.contact-form-mini select {
+  width: 100%;
   height: 48px;
   padding: 0 16px;
-  background: var(--c-surface);
-  border: 1px solid var(--c-border);
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: var(--radius-md);
-  color: var(--c-text);
+  color: #fff;
   font-size: var(--fs-body-sm);
-  transition: border-color 200ms ease, box-shadow 200ms ease;
+  font-family: var(--ff-body);
+  transition: border-color 0.2s ease, background 0.2s ease;
+  box-sizing: border-box;
 }
 
-.form-group input:focus,
-.form-group select:focus {
+.contact-form-mini input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.contact-form-mini input:focus,
+.contact-form-mini select:focus {
   outline: none;
   border-color: var(--c-primary);
-  box-shadow: 0 0 0 3px var(--c-primary-muted);
+  background: rgba(255, 255, 255, 0.1);
 }
 
-.form-group input::placeholder {
-  color: var(--c-text-3);
+.contact-form-mini select option {
+  background: #2B2D33;
+  color: #fff;
 }
 
-/* Native HTML5 Validation styling trick */
-.form-group input:invalid:not(:placeholder-shown) {
-  border-color: #ef4444; /* red */
+.contact-form-mini .btn--primary {
+  width: 100%;
+  height: 52px;
+  font-size: var(--fs-body-sm);
+  margin-top: 4px;
+  justify-content: center;
+}
+
+.contact-form-reassurance {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.3);
+  text-align: center;
+  margin-top: 12px;
+  line-height: 1.5;
+}
+
+/* Light theme adjustments */
+:root:not([data-theme="dark"]) .contact-section {
+  /* Keep charcoal even in light theme — it's the footer accent */
 }
