@@ -15,13 +15,12 @@
 }
 
 .case__header .section-headline {
-  max-width: none;
+  max-width: 22ch;
   margin-left: auto;
   margin-right: auto;
 }
 @media (min-width: 768px) {
   .case__header .section-headline {
-    white-space: nowrap;
     font-size: clamp(2rem, 3.5vw, 3.5rem);
   }
 }

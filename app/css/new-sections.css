@@ -1,0 +1,319 @@
+/* ==========================================================================
+   FORMATS WE EDIT — pill cloud section
+   ========================================================================== */
+
+.formats-section {
+  padding: var(--section-pad-y) 0;
+  text-align: center;
+}
+
+.formats-section .case__header {
+  max-width: 720px;
+  margin: 0 auto var(--sp-3xl);
+  text-align: center;
+}
+
+.formats-section .section-headline,
+.formats-section .section-subtext {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.formats-pills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: var(--sp-lg) var(--sp-md);
+  max-width: 880px;
+  margin: 0 auto;
+  padding: var(--sp-lg) 0;
+}
+
+.formats-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.85rem 1.5rem;
+  border-radius: var(--radius-pill);
+  background: #C71C35;
+  border: 1px solid #C71C35;
+  color: #fff;
+  font-size: var(--fs-body-sm);
+  font-weight: var(--fw-medium);
+  box-shadow: var(--shadow-sm);
+  transition: background var(--duration) var(--ease-out),
+              border-color var(--duration) var(--ease-out),
+              box-shadow var(--duration) var(--ease-out),
+              transform var(--duration) var(--ease-out);
+}
+
+.formats-pill:hover {
+  background: var(--c-primary-hover);
+  border-color: var(--c-primary-hover);
+  box-shadow: var(--shadow-glow);
+  transform: translateY(-4px) rotate(0deg) !important;
+}
+
+/* Scattered / hand-placed arrangement — staggered rotation + vertical offset per pill */
+.formats-pill:nth-child(1)  { transform: translateY(-6px)  rotate(-3deg); }
+.formats-pill:nth-child(2)  { transform: translateY(10px)  rotate(4deg);  }
+.formats-pill:nth-child(3)  { transform: translateY(-14px) rotate(2deg);  }
+.formats-pill:nth-child(4)  { transform: translateY(4px)   rotate(-5deg); }
+.formats-pill:nth-child(5)  { transform: translateY(-4px)  rotate(3deg);  }
+.formats-pill:nth-child(6)  { transform: translateY(12px)  rotate(-2deg); }
+.formats-pill:nth-child(7)  { transform: translateY(-10px) rotate(5deg);  }
+.formats-pill:nth-child(8)  { transform: translateY(6px)   rotate(-4deg); }
+.formats-pill:nth-child(9)  { transform: translateY(-2px)  rotate(2deg);  }
+.formats-pill:nth-child(10) { transform: translateY(8px)   rotate(-3deg); }
+
+@media (max-width: 640px) {
+  .formats-pill { transform: none !important; }
+}
+
+/* ==========================================================================
+   PROCESS IMPACT — 4-step horizontal flow
+   ========================================================================== */
+
+.process-impact-section {
+  padding: var(--section-pad-y) 0;
+}
+
+.process-impact-section .case__header {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto var(--sp-3xl);
+}
+
+.process-impact-section .section-headline {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.process-impact-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--sp-xl);
+  position: relative;
+  padding-top: var(--sp-xl);
+}
+
+/* Connecting horizontal line running through the number markers */
+.process-impact-line {
+  position: absolute;
+  left: 6%;
+  right: 6%;
+  top: calc(var(--sp-xl) + 2.6rem + 18px);
+  height: 2px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    var(--c-primary) 15%,
+    var(--c-border-hover) 50%,
+    var(--c-primary) 85%,
+    transparent 100%);
+  opacity: 0.5;
+  z-index: 0;
+}
+
+.process-impact-step {
+  position: relative;
+  text-align: center;
+  padding: 0 var(--sp-sm);
+  z-index: 1;
+}
+
+/* Large soft overlapping circle behind each step, theme-colored */
+.process-impact-step__circle {
+  position: absolute;
+  top: calc(2.6rem - 70px);
+  left: 50%;
+  width: 180px;
+  height: 180px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--c-primary-muted) 0%, transparent 72%);
+  filter: blur(2px);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.process-impact-step__title {
+  font-family: var(--ff-heading);
+  font-size: var(--fs-h4);
+  font-weight: var(--fw-semibold);
+  color: var(--c-text);
+  margin-bottom: var(--sp-lg);
+  min-height: 2.6rem;
+}
+
+.process-impact-step__num {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--c-primary);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-body-sm);
+  margin: 0 auto var(--sp-lg);
+  box-shadow: 0 0 0 6px var(--c-bg-alt), var(--shadow-glow);
+  position: relative;
+  transition: transform var(--duration) var(--ease-spring);
+}
+
+.process-impact-step:hover .process-impact-step__num {
+  transform: scale(1.12);
+}
+
+.process-impact-step__tag {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  color: var(--c-primary);
+  margin-bottom: var(--sp-sm);
+}
+
+.process-impact-step__body {
+  font-size: var(--fs-body-sm);
+  color: var(--c-text-2);
+  line-height: var(--lh-relaxed);
+  max-width: 24ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.process-impact-footer {
+  text-align: center;
+  margin-top: var(--sp-3xl);
+  font-size: var(--fs-body);
+  font-weight: var(--fw-medium);
+  color: var(--c-text);
+}
+
+@media (max-width: 900px) {
+  .process-impact-grid { grid-template-columns: repeat(2, 1fr); gap: var(--sp-2xl) var(--sp-xl); }
+  .process-impact-line { display: none; }
+}
+
+@media (max-width: 560px) {
+  .process-impact-grid { grid-template-columns: 1fr; }
+}
+
+/* ==========================================================================
+   ESSENTIAL SECTION — dual auto-scrolling image marquee
+   ========================================================================== */
+
+.essential-marquee {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-md);
+  margin: 0 auto var(--sp-3xl);
+}
+
+.essential-marquee__row {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  transform: translateZ(0);
+}
+
+/* Gradient masks for smooth fade in/out on edges */
+.essential-marquee__row::before,
+.essential-marquee__row::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 10vw;
+  max-width: 120px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.essential-marquee__row::before {
+  left: 0;
+  background: linear-gradient(to right, var(--c-bg-alt) 0%, transparent 100%);
+}
+
+.essential-marquee__row::after {
+  right: 0;
+  background: linear-gradient(to left, var(--c-bg-alt) 0%, transparent 100%);
+}
+
+.essential-marquee__track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+
+.essential-marquee__row--ltr .essential-marquee__track {
+  animation: essential-scroll-ltr 62s linear infinite;
+}
+
+.essential-marquee__row--rtl .essential-marquee__track {
+  animation: essential-scroll-rtl 66s linear infinite;
+}
+
+.essential-marquee__row:hover .essential-marquee__track {
+  animation-play-state: paused;
+}
+
+.essential-marquee__group {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-sm);
+  padding-right: var(--sp-sm);
+}
+
+.essential-marquee__item {
+  flex-shrink: 0;
+  display: block;
+  width: clamp(150px, 20vw, 220px);
+  aspect-ratio: 3 / 4;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--c-border);
+  padding: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.essential-marquee__item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform var(--duration-slow) var(--ease-out);
+  pointer-events: none;
+}
+
+.essential-marquee__item:hover img {
+  transform: scale(1.06);
+}
+
+.essential-marquee__item:focus-visible {
+  outline: 2px solid var(--c-primary);
+  outline-offset: 2px;
+}
+
+@keyframes essential-scroll-ltr {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+
+@keyframes essential-scroll-rtl {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@media (max-width: 640px) {
+  .essential-marquee__item { width: clamp(120px, 38vw, 160px); }
+  .essential-marquee__row::before,
+  .essential-marquee__row::after { width: 36px; }
+}
+
+@media (max-width: 560px) {
+  .essential-gallery { grid-template-columns: repeat(3, 1fr); }
+}

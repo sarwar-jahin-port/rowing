@@ -124,7 +124,7 @@
 
 .why-card__title {
   font-family: var(--ff-heading);
-  font-size: var(--fs-h5);
+  font-size: var(--fs-h4);
   font-weight: var(--fw-bold);
   color: var(--c-text);
   letter-spacing: var(--ls-tight);

@@ -45,6 +45,21 @@
     grid-template-columns: 1fr;
     gap: 2.5rem;
   }
+
+  /* Center everything except the form on mobile */
+  .contact-left {
+    align-items: center;
+    text-align: center;
+  }
+
+  .contact-subtext {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .contact-cta-row {
+    justify-content: center;
+  }
 }
 
 /* -- Left: Headline ---------------------------------------------------------- */

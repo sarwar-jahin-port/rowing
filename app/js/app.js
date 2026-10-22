@@ -231,6 +231,9 @@
     if (registerGroup) {
       registerGroup(Array.from(document.querySelectorAll('.post-card[data-lightbox]')));
       registerGroup(Array.from(document.querySelectorAll('.analytics-card[data-lightbox]')));
+      document.querySelectorAll('.essential-marquee__row').forEach(row => {
+        registerGroup(Array.from(row.querySelectorAll('.essential-marquee__item[data-lightbox]')));
+      });
     }
 
     /* Wire sp-card data-src from their img src */
