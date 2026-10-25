@@ -17,7 +17,7 @@
 .portfolio__header .section-label {
   color: var(--c-primary);
   opacity: 0.85;
-  display: inline-block;
+  display: inline-flex;
   margin-bottom: var(--sp-md);
 }
 
@@ -28,6 +28,7 @@
   color: #fff;
   letter-spacing: var(--ls-tight);
   line-height: var(--lh-tight);
+  text-transform: uppercase;
   margin: 0;
 }
 

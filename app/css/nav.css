@@ -20,11 +20,11 @@
   background: transparent;
 }
 
-/* Scrolled state */
+/* Scrolled state — glass morphism */
 .nav.scrolled {
   background: var(--c-nav-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
   border-bottom: 1px solid var(--c-border);
   box-shadow: var(--shadow-sm);
 }

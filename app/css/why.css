@@ -34,6 +34,7 @@
   color: var(--c-text);
   letter-spacing: var(--ls-tight);
   line-height: var(--lh-tight);
+  text-transform: uppercase;
   margin: var(--sp-md) 0 var(--sp-md);
 }
 
@@ -173,6 +174,15 @@
     direction: ltr;
     gap: 28px;
   }
+
+  .essential-text {
+    align-items: center;
+    text-align: center;
+  }
+
+  .essential-row-points {
+    align-items: center;
+  }
 }
 
 /* Stat/visual block */
@@ -266,10 +276,11 @@
 .essential-row-tag::before {
   content: '';
   display: block;
-  width: 20px;
-  height: 2px;
+  flex-shrink: 0;
+  width: 6px;
+  height: 6px;
   background: var(--c-primary);
-  border-radius: 1px;
+  border-radius: 50%;
 }
 
 .essential-row-title {

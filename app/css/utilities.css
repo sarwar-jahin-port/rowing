@@ -61,6 +61,34 @@
 /* -- Full-Width ---------------------------------------------------------- */
 .w-full { width: 100%; }
 
+/* -- Mobile: center body copy & paragraphs -------------------------------
+   Scoped to marketing copy / body-text containers, not form fields, nav
+   links, or buttons. Hero and Contact keep their own intentional
+   left-aligned layout and are excluded. ------------------------------- */
+@media (max-width: 767px) {
+  .why-card__body,
+  .essential-row-body,
+  .card__text,
+  .faq-answer-content,
+  .faq-answer-content p,
+  .faq-accordion p,
+  .footer__tagline,
+  .contact-form-reassurance,
+  .case-card__subtitle,
+  .why-card,
+  .why-card__title {
+    text-align: center;
+  }
+
+  .why-card {
+    align-items: center;
+  }
+
+  .why-card__icon {
+    margin: 0 auto;
+  }
+}
+
 /* -- Responsive Visibility ----------------------------------------------- */
 @media (max-width: 768px) {
   .hide-mobile { display: none !important; }

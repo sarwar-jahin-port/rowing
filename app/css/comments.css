@@ -15,7 +15,7 @@
 }
 
 .social-proof-section .section-label {
-  display: inline-block;
+  display: inline-flex;
   margin-bottom: var(--sp-md);
 }
 
@@ -26,6 +26,7 @@
   color: var(--c-text);
   letter-spacing: var(--ls-tight);
   line-height: var(--lh-tight);
+  text-transform: uppercase;
   margin: 0 0 var(--sp-md);
 }
 

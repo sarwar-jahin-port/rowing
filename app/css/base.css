@@ -35,6 +35,38 @@ body {
   opacity: 0.035;
 }
 
+/* -- Ambient Background Wash (light theme only) --------------------------
+   #app is the positioned container so this absolute layer stretches
+   across the full document height (not just one viewport) and scrolls
+   naturally with the page content. ---------------------------------- */
+#app {
+  position: relative;
+}
+
+.bg-wash {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: var(--z-behind);
+  pointer-events: none;
+  display: none;
+}
+
+:root:not([data-theme="dark"]) .bg-wash {
+  display: block;
+  background-image:
+    radial-gradient(circle 650px at 15% 3%,  rgba(200, 16, 46, 0.10) 0%, transparent 72%),
+    radial-gradient(circle 750px at 92% 6%,  rgba(122, 14, 34, 0.09) 0%, transparent 72%),
+    radial-gradient(circle 700px at 6% 28%,  rgba(200, 16, 46, 0.08) 0%, transparent 72%),
+    radial-gradient(circle 750px at 96% 42%, rgba(122, 14, 34, 0.09) 0%, transparent 72%),
+    radial-gradient(circle 700px at 4% 62%,  rgba(200, 16, 46, 0.08) 0%, transparent 72%),
+    radial-gradient(circle 750px at 94% 80%, rgba(122, 14, 34, 0.09) 0%, transparent 72%),
+    radial-gradient(circle 650px at 20% 95%, rgba(200, 16, 46, 0.08) 0%, transparent 72%);
+  background-repeat: no-repeat;
+}
+
 /* -- Headings ------------------------------------------------------------ */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--ff-heading);
@@ -128,7 +160,9 @@ html {
 
 /* -- Section Labels / Eyebrows ------------------------------------------- */
 .section-label {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-xs);
   font-family: var(--ff-body);
   font-size: var(--fs-label);
   font-weight: var(--fw-semibold);
@@ -138,6 +172,17 @@ html {
   margin-bottom: var(--sp-lg);
 }
 
+/* Small red dot that precedes every section eyebrow label */
+.section-label::before {
+  content: '';
+  display: inline-block;
+  flex-shrink: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--c-primary);
+}
+
 /* -- Section Headlines --------------------------------------------------- */
 .section-headline {
   font-size: var(--fs-h2);
@@ -145,6 +190,7 @@ html {
   line-height: var(--lh-snug);
   margin-bottom: var(--sp-lg);
   max-width: 18ch;
+  text-transform: uppercase;
 }
 
 /* -- Section Subtext ----------------------------------------------------- */

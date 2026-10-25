@@ -44,7 +44,9 @@
 }
 
 .faq-tag {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
   font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -53,12 +55,23 @@
   font-weight: 600;
 }
 
+.faq-tag::before {
+  content: '';
+  display: inline-block;
+  flex-shrink: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--c-primary);
+}
+
 .faq-title {
   font-size: clamp(1.9rem, 3.4vw, 3.5rem);
   font-weight: 700;
   line-height: 1.1;
   color: var(--c-text);
   letter-spacing: -0.02em;
+  text-transform: uppercase;
 }
 
 /* Nav Buttons */

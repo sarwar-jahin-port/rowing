@@ -40,7 +40,7 @@
     "@type": "ProfessionalService",
     "name": "Oar & Blade",
     "url": "https://www.oarandblade.com/",
-    "logo": "https://www.oarandblade.com/img/brand/logo-light.png",
+    "logo": "https://www.oarandblade.com/img/brand/logo.png",
     "image": "https://www.oarandblade.com/img/brand/og-image.jpg",
     "description": "Specialist social media content agency for rowing clubs. We create branded posts, reels, carousels, and content calendars built around your club's culture, season, and goals.",
     "areaServed": "Worldwide",
@@ -153,7 +153,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="dns-prefetch" href="https://fonts.googleapis.com">
-  <link rel="preload" href="img/brand/logo-light.png" as="image">
+  <link rel="preload" href="img/brand/logo.png" as="image">
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <!-- ============ Stylesheets ============ -->
@@ -204,12 +204,15 @@
 
   <div id="app">
 
+    <!-- Ambient background wash (light theme only) -->
+    <div class="bg-wash" aria-hidden="true"></div>
+
     <!-- ============ NAVIGATION ============ -->
     <header class="nav" id="nav" role="banner">
       <div class="wrap nav-inner">
         <!-- Logo -->
         <a href="#" class="logo" aria-label="Oar and Blade Home">
-          <img src="img/brand/logo-light.png" alt="Oar & Blade" class="logo-img logo-img--light" fetchpriority="high" decoding="async">
+          <img src="img/brand/logo.png" alt="Oar & Blade" class="logo-img logo-img--light" fetchpriority="high" decoding="async">
           <img src="img/brand/logo-dark.png" alt="Oar & Blade" class="logo-img logo-img--dark" decoding="async">
         </a>
 
@@ -375,7 +378,7 @@
       <!-- CASE STUDY (Injected from user request) -->
       <section class="section wrap" id="case-study" aria-labelledby="case-heading">
         <div class="case__header reveal">
-          <span class="section-label"><span class="dot" style="display:inline-block; width:6px; height:6px; background:var(--c-primary); border-radius:50%; margin-right:4px;"></span> CASE STUDY</span>
+          <span class="section-label">CASE STUDY</span>
           <h2 id="case-heading" class="section-headline">Great clubs deserve communities that show up</h2>
           <p class="section-subtext">See how consistent, high-impact rowing static posts and reels transformed a quiet fan page into a thriving community drawing millions of views.</p>
         </div>
@@ -480,11 +483,9 @@
       <section class="reels-section" id="reels" aria-labelledby="reels-heading">
         <div class="wrap">
           <div class="reels__header reveal">
-            <div class="reels__header-left">
-              <span class="section-label">Content That Performs</span>
-              <h2 id="reels-heading" class="reels-headline">Reels that<br><span>stop the scroll.</span></h2>
-            </div>
-            <p class="reels__header-right">Short-form video content crafted for maximum reach — built around your club's real training, racing, and culture.</p>
+            <span class="section-label">Content That Performs</span>
+            <h2 id="reels-heading" class="reels-headline">Reels that stop the scroll.</h2>
+            <p class="reels__header-sub">Short-form video content crafted for maximum reach — built around your club's real training, racing, and culture.</p>
           </div>
         </div>
 
@@ -496,19 +497,11 @@
                 <div class="reel-card__media">
                   <iframe src="https://www.youtube.com/embed/obIBJtxiJ2E" title="Race Day Recap" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
                 </div>
-                <div class="reel-card__info">
-                  <span class="reel-card__platform">YouTube Short</span>
-                  <p class="reel-card__title">Race Day Recap</p>
-                </div>
               </div>
 
               <div class="reel-card">
                 <div class="reel-card__media">
                   <iframe src="https://www.youtube.com/embed/Px4WsEc0PHE" title="Morning Training" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
-                </div>
-                <div class="reel-card__info">
-                  <span class="reel-card__platform">YouTube Short</span>
-                  <p class="reel-card__title">Morning Training</p>
                 </div>
               </div>
 
@@ -516,19 +509,11 @@
                 <div class="reel-card__media">
                   <iframe src="https://www.youtube.com/embed/Y1HoFLdr0iE" title="Athlete Spotlight" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
                 </div>
-                <div class="reel-card__info">
-                  <span class="reel-card__platform">YouTube Short</span>
-                  <p class="reel-card__title">Athlete Spotlight</p>
-                </div>
               </div>
 
               <div class="reel-card">
                 <div class="reel-card__media">
                   <iframe src="https://www.youtube.com/embed/u1lR1qxSzU4" title="Regatta Highlights" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
-                </div>
-                <div class="reel-card__info">
-                  <span class="reel-card__platform">YouTube Short</span>
-                  <p class="reel-card__title">Regatta Highlights</p>
                 </div>
               </div>
 
@@ -536,19 +521,11 @@
                 <div class="reel-card__media">
                   <iframe src="https://www.youtube.com/embed/fYQjzOQoRs4" title="Club Culture" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
                 </div>
-                <div class="reel-card__info">
-                  <span class="reel-card__platform">YouTube Short</span>
-                  <p class="reel-card__title">Club Culture</p>
-                </div>
               </div>
 
               <div class="reel-card">
                 <div class="reel-card__media">
                   <iframe src="https://www.youtube.com/embed/TFQCWLajhBQ" title="Junior Recruitment" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
-                </div>
-                <div class="reel-card__info">
-                  <span class="reel-card__platform">YouTube Short</span>
-                  <p class="reel-card__title">Junior Recruitment</p>
                 </div>
               </div>
 
@@ -556,19 +533,11 @@
                 <div class="reel-card__media">
                   <iframe src="https://www.youtube.com/embed/Ob8GGr1XMS4" title="Behind the Scenes" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
                 </div>
-                <div class="reel-card__info">
-                  <span class="reel-card__platform">YouTube Short</span>
-                  <p class="reel-card__title">Behind the Scenes</p>
-                </div>
               </div>
 
               <div class="reel-card">
                 <div class="reel-card__media">
                   <iframe src="https://www.youtube.com/embed/3F6XAK6d8OQ" title="Fan Favorite" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
-                </div>
-                <div class="reel-card__info">
-                  <span class="reel-card__platform">YouTube Short</span>
-                  <p class="reel-card__title">Fan Favorite</p>
                 </div>
               </div>
 
@@ -735,36 +704,38 @@
           <h2 id="process-heading" class="section-headline">How we turn content into impact</h2>
         </div>
 
-        <div class="process-impact-grid">
-          <div class="process-impact-line" aria-hidden="true"></div>
+        <div class="process-impact-box">
+          <div class="process-impact-grid">
+            <div class="process-impact-line" aria-hidden="true"></div>
 
-          <div class="process-impact-step reveal">
-            <div class="process-impact-step__circle"></div>
-            <h3 class="process-impact-step__title">Lock in &amp; Onboard</h3>
-            <div class="process-impact-step__num">1</div>
-            <p class="process-impact-step__tag">Set the rhythm</p>
-            <p class="process-impact-step__body">Start with your club goals, calendar, and priorities. We build a content plan around recruitment, sponsors, alumni, or community engagement.</p>
-          </div>
-          <div class="process-impact-step reveal">
-            <div class="process-impact-step__circle"></div>
-            <h3 class="process-impact-step__title">Drop your footage</h3>
-            <div class="process-impact-step__num">2</div>
-            <p class="process-impact-step__tag">Share your moments</p>
-            <p class="process-impact-step__body">Send us training clips, race-day footage, photos, results, and announcements. We make the most of what your club already captures.</p>
-          </div>
-          <div class="process-impact-step reveal">
-            <div class="process-impact-step__circle"></div>
-            <h3 class="process-impact-step__title">Master the system</h3>
-            <div class="process-impact-step__num">3</div>
-            <p class="process-impact-step__tag">We create the content</p>
-            <p class="process-impact-step__body">We turn your raw moments into polished reels, posts, captions, stories, and graphics that feel unmistakably like your club.</p>
-          </div>
-          <div class="process-impact-step reveal">
-            <div class="process-impact-step__circle"></div>
-            <h3 class="process-impact-step__title">Consistent flow</h3>
-            <div class="process-impact-step__num">4</div>
-            <p class="process-impact-step__tag">Stay visible</p>
-            <p class="process-impact-step__body">Review one organized content batch, approve it, and let your club show up consistently all season — without adding more work for volunteers.</p>
+            <div class="process-impact-step reveal">
+              <div class="process-impact-step__circle"></div>
+              <h3 class="process-impact-step__title">Lock in &amp; Onboard</h3>
+              <div class="process-impact-step__num">1</div>
+              <p class="process-impact-step__tag">Set the rhythm</p>
+              <p class="process-impact-step__body">Start with your club goals, calendar, and priorities. We build a content plan around recruitment, sponsors, alumni, or community engagement.</p>
+            </div>
+            <div class="process-impact-step reveal">
+              <div class="process-impact-step__circle"></div>
+              <h3 class="process-impact-step__title">Drop your footage</h3>
+              <div class="process-impact-step__num">2</div>
+              <p class="process-impact-step__tag">Share your moments</p>
+              <p class="process-impact-step__body">Send us training clips, race-day footage, photos, results, and announcements. We make the most of what your club already captures.</p>
+            </div>
+            <div class="process-impact-step reveal">
+              <div class="process-impact-step__circle"></div>
+              <h3 class="process-impact-step__title">Master the system</h3>
+              <div class="process-impact-step__num">3</div>
+              <p class="process-impact-step__tag">We create the content</p>
+              <p class="process-impact-step__body">We turn your raw moments into polished reels, posts, captions, stories, and graphics that feel unmistakably like your club.</p>
+            </div>
+            <div class="process-impact-step reveal">
+              <div class="process-impact-step__circle"></div>
+              <h3 class="process-impact-step__title">Consistent flow</h3>
+              <div class="process-impact-step__num">4</div>
+              <p class="process-impact-step__tag">Stay visible</p>
+              <p class="process-impact-step__body">Review one organized content batch, approve it, and let your club show up consistently all season — without adding more work for volunteers.</p>
+            </div>
           </div>
         </div>
 
@@ -1075,7 +1046,7 @@
         <div class="footer__top reveal">
           <div class="footer__brand-col">
             <a href="#" class="logo" aria-label="Oar & Blade Home">
-              <img src="img/brand/logo-light.png" alt="Oar & Blade" class="logo-img logo-img--light footer-logo">
+              <img src="img/brand/logo.png" alt="Oar & Blade" class="logo-img logo-img--light footer-logo">
               <img src="img/brand/logo-dark.png" alt="Oar & Blade" class="logo-img logo-img--dark footer-logo">
             </a>
             <p class="footer__tagline">

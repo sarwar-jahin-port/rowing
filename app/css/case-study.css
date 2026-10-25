@@ -128,7 +128,7 @@
   .case-compare {
     flex-direction: column;
     gap: var(--sp-2xl);
-    align-items: stretch;
+    align-items: center;
   }
 }
 
@@ -155,7 +155,7 @@
   border-radius: 24px;
   text-transform: uppercase;
   z-index: 5;
-  margin-bottom: -15%; /* Pull down into the transparent space of the image */
+  margin-bottom: -8%; /* Pull down into the transparent space of the image, but sit higher than before */
   box-shadow: var(--shadow-sm);
 }
 
