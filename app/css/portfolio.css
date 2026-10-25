@@ -3,7 +3,9 @@
    ========================================================================== */
 
 .portfolio-section {
-  background: #07080f;
+  background-image: radial-gradient(circle 700px at 12% 100%, rgba(122, 14, 34, 0.105) 0%, transparent 68%),
+                     radial-gradient(circle 700px at 90% 0%, rgba(200, 16, 46, 0.088) 0%, transparent 68%);
+  background-color: #0D0707;
   padding: var(--section-pad-y) 0;
   overflow: hidden;
 }
@@ -58,7 +60,7 @@
   scroll-snap-align: center;
   border-radius: var(--radius-xl);
   overflow: hidden;
-  background: #0e1018;
+  background: #170D0C;
   border: 1px solid rgba(255,255,255,0.06);
   cursor: pointer;
   position: relative;
@@ -78,7 +80,7 @@
 .post-card__img-wrap {
   width: 100%;
   aspect-ratio: 4 / 5;
-  background: #0a0b12;
+  background: #120908;
   display: flex;
   align-items: center;
   justify-content: center;

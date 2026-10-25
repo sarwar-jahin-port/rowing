@@ -75,7 +75,7 @@
    ========================================================================== */
 
 .process-impact-section {
-  padding: var(--section-pad-y) 0;
+  padding-block: var(--section-pad-y);
 }
 
 /* Rounded border wraps only the 4-step row — no fill, just the page's own bg */

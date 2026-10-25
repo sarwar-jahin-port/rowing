@@ -3,7 +3,9 @@
    ========================================================================== */
 
 .contact-section {
-  background: #1a1c22;  /* always charcoal — independent of theme */
+  /* always warm charcoal — independent of theme */
+  background-image: radial-gradient(circle 700px at 85% 100%, rgba(200, 16, 46, 0.123) 0%, transparent 68%);
+  background-color: #201A19;
   position: relative;
   overflow: hidden;
   padding: clamp(3rem, 6vw, 5rem) 0;

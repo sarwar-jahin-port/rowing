@@ -7,13 +7,15 @@
    LIGHT THEME (Default)
    -------------------------------------------------------------------------- */
 :root {
-  /* -- Color: Backgrounds ------------------------------------------------ */
-  --c-bg:              #FFFFFF;
-  --c-bg-alt:          #F8F7F4;
+  /* -- Color: Backgrounds -------------------------------------------------
+     Warm, faintly rose-tinted off-white instead of flat white — crisp
+     white cards then sit on top of it for a layered, premium feel. ----- */
+  --c-bg:              #FFFAF9;
+  --c-bg-alt:          #F6F0EE;
   --c-surface:         #FFFFFF;
   --c-surface-raised:  #FFFFFF;
-  --c-surface-overlay: rgba(255, 255, 255, 0.95);
-  --c-nav-bg:          rgba(255, 255, 255, 0.65);
+  --c-surface-overlay: rgba(255, 252, 251, 0.95);
+  --c-nav-bg:          rgba(255, 251, 250, 0.65);
 
   /* -- Color: Brand ------------------------------------------------------ */
   --c-primary:         #C8102E;
@@ -42,9 +44,9 @@
   --shadow-glow-accent:0 0 24px rgba(43, 45, 51, 0.08);
 
   /* -- Scrollbar --------------------------------------------------------- */
-  --scrollbar-track:   #F8F7F4;
-  --scrollbar-thumb:   #d4d4d8;
-  --scrollbar-thumb-h: #a1a1aa;
+  --scrollbar-track:   #F6F0EE;
+  --scrollbar-thumb:   #ddd0cd;
+  --scrollbar-thumb-h: #c0aca8;
 
   /* (Common Tokens below) */
 }
@@ -53,17 +55,19 @@
    DARK THEME (Override)
    -------------------------------------------------------------------------- */
 :root[data-theme="dark"] {
-  --c-bg:              #07080f;
-  --c-bg-alt:          #0b0d15;
-  --c-surface:         #0e1018;
-  --c-surface-raised:  #161821;
-  --c-surface-overlay: rgba(7, 8, 15, 0.95);
-  --c-nav-bg:          rgba(7, 8, 15, 0.65);
+  /* Obsidian-with-oxblood-undertone instead of cool blue-black — warmer,
+     more premium, and lets the brand red glow feel at home. ----------- */
+  --c-bg:              #0D0707;
+  --c-bg-alt:          #150B0A;
+  --c-surface:         #170D0C;
+  --c-surface-raised:  #221513;
+  --c-surface-overlay: rgba(13, 7, 7, 0.95);
+  --c-nav-bg:          rgba(13, 7, 7, 0.65);
 
-  --c-text:            #f0f0f2;
-  --c-text-2:          #a0a3b1;
-  --c-text-3:          #6b6e7b;
-  --c-text-inverse:    #07080f;
+  --c-text:            #f2efee;
+  --c-text-2:          #a8a0a0;
+  --c-text-3:          #72696a;
+  --c-text-inverse:    #0D0707;
 
   --c-border:          rgba(255, 255, 255, 0.06);
   --c-border-hover:    rgba(255, 255, 255, 0.12);
@@ -82,9 +86,9 @@
   --shadow-glow-accent:0 0 24px rgba(255, 255, 255, 0.10);
 
   /* Scrollbar */
-  --scrollbar-track:   #07080f;
-  --scrollbar-thumb:   #161821;
-  --scrollbar-thumb-h: #6b6e7b;
+  --scrollbar-track:   #0D0707;
+  --scrollbar-thumb:   #221513;
+  --scrollbar-thumb-h: #3a2320;
 }
 
 /* --------------------------------------------------------------------------

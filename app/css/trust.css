@@ -4,6 +4,7 @@
    ========================================================================== */
 
 .trust-strip {
+  background-image: radial-gradient(circle 500px at 50% 0%, rgba(200, 16, 46, 0.026) 0%, transparent 70%);
   background-color: var(--c-bg-alt);
   padding-block: var(--sp-3xl) var(--sp-2xl); /* Extra top padding to space from hero */
   overflow: hidden;

@@ -169,7 +169,7 @@
 
 /* Dark mode avatar gradient */
 :root[data-theme="dark"] .hero__avatar {
-  background: linear-gradient(135deg, #2B2D33, #161821);
+  background: linear-gradient(135deg, #332322, #221513);
 }
 
 .hero__trust-text {

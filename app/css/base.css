@@ -35,10 +35,13 @@ body {
   opacity: 0.035;
 }
 
-/* -- Ambient Background Wash (light theme only) --------------------------
+/* -- Ambient Background Wash (both themes) --------------------------------
    #app is the positioned container so this absolute layer stretches
    across the full document height (not just one viewport) and scrolls
-   naturally with the page content. ---------------------------------- */
+   naturally with the page content. Sections with their own flat
+   background (reels, portfolio, analytics, etc.) paint over it, which is
+   why those sections carry their own local glow — see each section's
+   CSS file for a matching radial-gradient layered on its background. -- */
 #app {
   position: relative;
 }
@@ -51,20 +54,30 @@ body {
   bottom: 0;
   z-index: var(--z-behind);
   pointer-events: none;
-  display: none;
+  display: block;
+  background-repeat: no-repeat;
 }
 
 :root:not([data-theme="dark"]) .bg-wash {
-  display: block;
   background-image:
-    radial-gradient(circle 650px at 15% 3%,  rgba(200, 16, 46, 0.10) 0%, transparent 72%),
-    radial-gradient(circle 750px at 92% 6%,  rgba(122, 14, 34, 0.09) 0%, transparent 72%),
-    radial-gradient(circle 700px at 6% 28%,  rgba(200, 16, 46, 0.08) 0%, transparent 72%),
-    radial-gradient(circle 750px at 96% 42%, rgba(122, 14, 34, 0.09) 0%, transparent 72%),
-    radial-gradient(circle 700px at 4% 62%,  rgba(200, 16, 46, 0.08) 0%, transparent 72%),
-    radial-gradient(circle 750px at 94% 80%, rgba(122, 14, 34, 0.09) 0%, transparent 72%),
-    radial-gradient(circle 650px at 20% 95%, rgba(200, 16, 46, 0.08) 0%, transparent 72%);
-  background-repeat: no-repeat;
+    radial-gradient(circle 650px at 15% 3%,  rgba(200, 16, 46, 0.088) 0%, transparent 72%),
+    radial-gradient(circle 750px at 92% 6%,  rgba(122, 14, 34, 0.079) 0%, transparent 72%),
+    radial-gradient(circle 700px at 6% 28%,  rgba(200, 16, 46, 0.070) 0%, transparent 72%),
+    radial-gradient(circle 750px at 96% 42%, rgba(122, 14, 34, 0.079) 0%, transparent 72%),
+    radial-gradient(circle 700px at 4% 62%,  rgba(200, 16, 46, 0.070) 0%, transparent 72%),
+    radial-gradient(circle 750px at 94% 80%, rgba(122, 14, 34, 0.079) 0%, transparent 72%),
+    radial-gradient(circle 650px at 20% 95%, rgba(200, 16, 46, 0.070) 0%, transparent 72%);
+}
+
+:root[data-theme="dark"] .bg-wash {
+  background-image:
+    radial-gradient(circle 700px at 15% 3%,  rgba(224, 21, 53, 0.140) 0%, transparent 72%),
+    radial-gradient(circle 800px at 92% 6%,  rgba(122, 14, 34, 0.175) 0%, transparent 72%),
+    radial-gradient(circle 750px at 6% 28%,  rgba(200, 16, 46, 0.123) 0%, transparent 72%),
+    radial-gradient(circle 800px at 96% 42%, rgba(122, 14, 34, 0.158) 0%, transparent 72%),
+    radial-gradient(circle 750px at 4% 62%,  rgba(200, 16, 46, 0.123) 0%, transparent 72%),
+    radial-gradient(circle 800px at 94% 80%, rgba(122, 14, 34, 0.158) 0%, transparent 72%),
+    radial-gradient(circle 700px at 20% 95%, rgba(200, 16, 46, 0.123) 0%, transparent 72%);
 }
 
 /* -- Headings ------------------------------------------------------------ */

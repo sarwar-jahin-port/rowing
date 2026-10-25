@@ -3,7 +3,9 @@
    ========================================================================== */
 
 .analytics-section {
-  background: var(--c-bg-alt);
+  background-image: radial-gradient(circle 650px at 88% 0%, rgba(200, 16, 46, 0.044) 0%, transparent 70%),
+                     radial-gradient(circle 550px at 4% 100%, rgba(122, 14, 34, 0.039) 0%, transparent 70%);
+  background-color: var(--c-bg-alt);
   padding: var(--section-pad-y) 0;
   overflow: hidden;
 }

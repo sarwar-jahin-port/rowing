@@ -3,7 +3,9 @@
    ========================================================================== */
 
 .reels-section {
-  background: #07080f;
+  background-image: radial-gradient(circle 750px at 50% 0%, rgba(200, 16, 46, 0.123) 0%, transparent 65%),
+                     radial-gradient(circle 600px at 100% 100%, rgba(122, 14, 34, 0.088) 0%, transparent 70%);
+  background-color: #0D0707;
   padding: var(--section-pad-y) 0;
   overflow: hidden;
   position: relative;
@@ -90,7 +92,7 @@
   position: relative;
   border-radius: var(--radius-xl);
   overflow: hidden;
-  background: #0e1018;
+  background: #170D0C;
   border: 1px solid rgba(255, 255, 255, 0.06);
   cursor: pointer;
   transition: transform 0.4s var(--ease-out), box-shadow 0.4s ease;
@@ -114,7 +116,7 @@
   position: relative;
   width: 100%;
   aspect-ratio: 9 / 16;
-  background: #0a0b12;
+  background: #120908;
   overflow: hidden;
 }
 
@@ -130,7 +132,7 @@
 .reel-card__thumb {
   position: absolute;
   inset: 0;
-  background: linear-gradient(160deg, #0e1018 0%, #161821 100%);
+  background: linear-gradient(160deg, #170D0C 0%, #221513 100%);
   display: flex;
   align-items: center;
   justify-content: center;
