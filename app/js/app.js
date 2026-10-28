@@ -85,6 +85,65 @@
   }
 
   /* -----------------------------------------------------------------------
+     Toast
+     ----------------------------------------------------------------------- */
+  let toastTimer = null;
+  function showToast(message, type = 'success') {
+    const toast = document.getElementById('toast');
+    if (!toast) return;
+    clearTimeout(toastTimer);
+    toast.textContent = message;
+    toast.classList.toggle('toast--error', type === 'error');
+    toast.classList.add('toast--visible');
+    toastTimer = setTimeout(() => toast.classList.remove('toast--visible'), 5000);
+  }
+
+  /* -----------------------------------------------------------------------
+     Audit Form — AJAX submit (no page redirect), toast feedback
+     ----------------------------------------------------------------------- */
+  function initAuditForm() {
+    const form = document.getElementById('auditForm');
+    if (!form) return;
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalBtnHTML = submitBtn ? submitBtn.innerHTML : '';
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (submitBtn && submitBtn.disabled) return;
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending…';
+      }
+
+      fetch(form.action, {
+        method: form.method || 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' },
+      })
+        .then(async (res) => {
+          let data = {};
+          try { data = await res.json(); } catch (err) {}
+          if (res.ok && data.success !== false) {
+            showToast("Thanks! We'll review your club and respond within 48 hours.", 'success');
+            form.reset();
+          } else {
+            showToast("Something went wrong on our end. Please try again, or email us directly at omar@oarandblade.com.", 'error');
+          }
+        })
+        .catch(() => {
+          showToast('Network error — please check your connection and try again.', 'error');
+        })
+        .finally(() => {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalBtnHTML;
+          }
+        });
+    });
+  }
+
+  /* -----------------------------------------------------------------------
      Theme Toggle
      ----------------------------------------------------------------------- */
   function initTheme() {
@@ -221,6 +280,7 @@
     initSmoothScroll();
     initScrollReveal();
     initCurrentYear();
+    initAuditForm();
 
     /* Shared portfolio/analytics lightbox — one overlay, two groups */
     const registerGroup = makeLightbox({

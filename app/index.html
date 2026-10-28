@@ -1003,7 +1003,8 @@
             <!-- Right: Mini form -->
             <div class="contact-right">
               <span class="contact-form-label">Request a free club audit</span>
-              <form id="auditForm" class="contact-form-mini" action="https://formspree.io/f/YOUR_ENDPOINT" method="POST">
+              <form id="auditForm" class="contact-form-mini" action="https://api.snapitforms.com/submit" method="POST">
+                <input type="hidden" name="access_key" value="sf_207e17d594d658f2b95b0a921bcf6866">
                 <input type="text" name="Club Name" required placeholder="Club name">
                 <input type="text" name="Website" required placeholder="Website or Instagram">
                 <select name="Goal" required>
@@ -1137,6 +1138,9 @@
     </div>
     <span class="sp-lightbox__counter" id="sp-lightbox-counter"></span>
   </div>
+
+  <!-- ============ Toast ============ -->
+  <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 
   <!-- ============ Scripts ============ -->
   <script src="js/app.js" defer></script>

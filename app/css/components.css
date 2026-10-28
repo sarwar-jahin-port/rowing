@@ -178,3 +178,54 @@
   font-size: 1rem;
   letter-spacing: 0.1em;
 }
+
+/* -- Toast ----------------------------------------------------------------- */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: var(--sp-xl);
+  transform: translate(-50%, 16px);
+  z-index: var(--z-toast);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-sm);
+  max-width: min(90vw, 420px);
+  padding: 14px 20px;
+  /* Always dark glass, independent of theme — matches the contact section */
+  background: #201A19;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-left: 3px solid var(--c-success);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-xl);
+  font-size: var(--fs-body-sm);
+  font-weight: var(--fw-medium);
+  line-height: var(--lh-snug);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--duration) var(--ease-out), transform var(--duration) var(--ease-out);
+}
+
+.toast--error {
+  border-left-color: var(--c-error);
+}
+
+.toast.toast--visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+  pointer-events: auto;
+}
+
+@media (max-width: 480px) {
+  .toast {
+    left: var(--sp-md);
+    right: var(--sp-md);
+    bottom: var(--sp-lg);
+    transform: translateY(16px);
+    max-width: none;
+  }
+
+  .toast.toast--visible {
+    transform: translateY(0);
+  }
+}
