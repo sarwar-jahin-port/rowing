@@ -23,6 +23,7 @@
   -webkit-tap-highlight-color: transparent;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 0 14px rgba(200, 16, 46, 0.14);
 }
 
 .btn:focus-visible {
@@ -35,12 +36,13 @@
   background: var(--c-primary);
   color: #fff;
   border-color: var(--c-primary);
+  box-shadow: 0 0 16px rgba(200, 16, 46, 0.22);
 }
 
 .btn--primary:hover {
   background: var(--c-primary-hover);
   border-color: var(--c-primary-hover);
-  box-shadow: var(--shadow-glow);
+  box-shadow: 0 0 32px rgba(200, 16, 46, 0.55);
   transform: translateY(-1px);
 }
 
@@ -58,6 +60,7 @@
 .btn--secondary:hover {
   border-color: var(--c-text-3);
   background: rgba(255, 255, 255, 0.03);
+  box-shadow: 0 0 26px rgba(200, 16, 46, 0.3);
   transform: translateY(-1px);
 }
 
@@ -65,11 +68,12 @@
 .btn--white {
   background: var(--c-text);
   color: var(--c-text-inverse);
+  box-shadow: 0 0 14px rgba(200, 16, 46, 0.16);
 }
 
 .btn--white:hover {
   background: #fff;
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 0 30px rgba(200, 16, 46, 0.4);
   transform: translateY(-1px);
 }
 

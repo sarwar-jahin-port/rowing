@@ -115,16 +115,18 @@
   font-size: var(--fs-body-sm);
   font-weight: var(--fw-medium);
   text-decoration: none;
-  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  box-shadow: 0 0 14px rgba(200, 16, 46, 0.14);
 }
 
 .contact-cta-row .btn--ghost:hover {
   border-color: rgba(255, 255, 255, 0.5);
   color: #fff;
   background: rgba(255, 255, 255, 0.06);
+  box-shadow: 0 0 28px rgba(200, 16, 46, 0.32);
 }
 
 /* -- Right: Mini Form -------------------------------------------------------- */

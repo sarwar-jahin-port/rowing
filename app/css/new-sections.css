@@ -212,7 +212,30 @@
 }
 
 @media (max-width: 560px) {
-  .process-impact-grid { grid-template-columns: 1fr; }
+  .process-impact-grid {
+    grid-template-columns: 1fr;
+    --impact-circle-offset: calc(2.6rem + var(--sp-lg) + 18px);
+  }
+
+  /* Connecting vertical line running through each step's number marker.
+     Anchored to this step's own circle (top) and next step's circle
+     (negative bottom), so it stays centered on every marker regardless
+     of how tall each card's body text makes it. Sits BEHIND the title/
+     tag/body text (which are normal in-flow content, painted above a
+     negative z-index layer) so it reads as passing behind the copy
+     instead of striking through the letters. */
+  .process-impact-step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: var(--impact-circle-offset);
+    bottom: calc(-1 * (var(--sp-2xl) + var(--impact-circle-offset)));
+    width: 2px;
+    background: linear-gradient(180deg, var(--c-primary), var(--c-border-hover));
+    opacity: 0.4;
+    z-index: -1;
+    transform: translateX(-50%);
+  }
 }
 
 /* ==========================================================================
